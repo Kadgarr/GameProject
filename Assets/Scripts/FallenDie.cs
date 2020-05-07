@@ -46,6 +46,11 @@ public class FallenDie : MonoBehaviour
                 GetComponentsInChildren<BoxCollider2D>()[i].enabled = false;
             }
         }
+
+        if (collision.gameObject.tag == "PlatformMove")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,5 +63,11 @@ public class FallenDie : MonoBehaviour
             }
             
         }
+
+        if (collision.tag == "DieSpace")
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
 }

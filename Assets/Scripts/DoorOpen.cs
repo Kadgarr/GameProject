@@ -8,6 +8,14 @@ public class DoorOpen : MonoBehaviour
 
     public Sprite doorOpened;
 
+    public CameraController1 Вмикає
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     public void OpenedDoor(bool state)
     {
 

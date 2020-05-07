@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Die : MonoBehaviour
 {
     public float timer;
@@ -30,7 +31,15 @@ public class Die : MonoBehaviour
         if (collision.tag == "Player")
         {
             Check = true;
-            Player.GetComponentInChildren<DeadPlayer>().StatePlayer(true);
+            try
+            {
+                Player.GetComponentInChildren<DeadPlayer>().StatePlayer(true);
+            }
+            catch
+            {
+
+            }
+            
         }
     }
 

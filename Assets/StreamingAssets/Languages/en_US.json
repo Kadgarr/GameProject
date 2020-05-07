@@ -1,0 +1,165 @@
+{
+  "items": [
+    {
+      "key": "lang",
+      "value": "Language"
+    },
+    {
+      "key": "lvl",
+      "value": "Levels"
+    },
+    {
+      "key": "Menu_but_newgame",
+      "value": "New Game"
+    },
+    {
+      "key": "Menu_but_continue",
+      "value": "Continue"
+    },
+    {
+      "key": "Menu_but_settings",
+      "value": "Settings"
+    },
+    {
+      "key": "Escp_contin",
+      "value": "Continue"
+    },
+    {
+      "key": "Escp_menu",
+      "value": "Menu"
+    },
+    {
+      "key": "Escp_exit",
+      "value": "Exit"
+    },
+    {
+      "key": "level_1_text",
+      "value": "Press the button and move on"
+    },
+    {
+      "key": "level_2_text",
+      "value": "Act faster"
+    },
+    {
+      "key": "level_3_text",
+      "value": "Try to click it yourself"
+    },
+    {
+      "key": "level_4_text",
+      "value": "Add actions"
+    },
+    {
+      "key": "level_5_text",
+      "value": "Rules change"
+    },
+    {
+      "key": "level_6_text",
+      "value": "Collect the greatest"
+    },
+    {
+      "key": "level_7_text",
+      "value": "She`s not where, she seems"
+    },
+    {
+      "key": "level_8_text",
+      "value": "Recursion"
+    },
+    {
+      "key": "level_9_text",
+      "value": "Interact"
+    },
+    {
+      "key": "level_10_text",
+      "value": "Constructor"
+    },
+    {
+      "key": "level_11_text",
+      "value": "Tick-Tack"
+    },
+    {
+      "key": "level_12_text",
+      "value": ":8"
+    },
+    {
+      "key": "level_13_text",
+      "value": "Tilts"
+    },
+    {
+      "key": "level_14_text",
+      "value": "Mess"
+    },
+    {
+      "key": "level_15_text",
+      "value": "Press the label"
+    },
+    {
+      "key": "hint_lvl_1",
+      "value": "Are you laughing? Just stand on the red button in the center"
+    },
+    {
+      "key": "hint_lvl_2",
+      "value": "Avoid falling turnes"
+    },
+    {
+      "key": "hint_lvl_3",
+      "value": "Click on the red button"
+    },
+    {
+      "key": "hint_lvl_4",
+      "value": "Now platforms move"
+    },
+    {
+      "key": "hint_lvl_5",
+      "value": "Normal surface and turnes swapped"
+    },
+    {
+      "key": "hint_lvl_6",
+      "value": "Dial 7777"
+    },
+    {
+      "key": "hint_lvl_7",
+      "value": "In the upper right corner appeared a passage (door opened)"
+    },
+    {
+      "key": "hint_lvl_8",
+      "value": "Stand on any button and go back to the place where you appeared"
+    },
+    {
+      "key": "hint_lvl_9",
+      "value": "Go to the lever and click on the button that appears"
+    },
+    {
+      "key": "hint_lvl_10",
+      "value": "Collect parts of the lever and go to a special place for lever assembly"
+    },
+    {
+      "key": "hint_lvl_11",
+      "value": "Time is running out on the scale"
+    },
+    {
+      "key": "hint_lvl_12",
+      "value": "You need to substitute the numbers so that the answer will be the number 8"
+    },
+    {
+      "key": "hint_lvl_13",
+      "value": "Titl you phone"
+    },
+    {
+      "key": "hint_lvl_14",
+      "value": "Button controls are reversed"
+    },
+    {
+      "key": "hint_lvl_15",
+      "value": "Click on the hint text"
+    },
+    {
+      "key": "End_Level_Text",
+      "value": "THE END"
+    },
+    {
+      "key": "InfoText",
+      "value": "\"Darkness Inside is a game where you have to show smartness, imagination and a good reaction. You need to go through levels at which you will need to solve certain puzzles to advance to the next level while combining an element of the gameplay of the platformer! Have a nice game! \" Developer: Bozhik Maxim"
+    }
+
+  ]
+}

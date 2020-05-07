@@ -7,6 +7,12 @@ TagManager:
   - Ground
   - FallenTorns
   - PlatformMove
+  - PartOfArmStick
+  - PartOfArmOwn
+  - CircleArm
+  - LocalizationManager
+  - MobileControl
+  - DieSpace
   layers:
   - Default
   - TransparentFX
@@ -43,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: EscapeMenu
+    uniqueID: 476201971
     locked: 0

@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
+    <ProjectGuid>{83BE2866-0A53-71D6-C680-423D67BBAD46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,26 +62,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ActivateButtonLvl.cs" />
     <Compile Include="Assets\Scripts\ActivateMovePlatformScript.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioActivate.cs" />
+    <Compile Include="Assets\Scripts\Audio\CheckAudio.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CameraController1.cs" />
+    <Compile Include="Assets\Scripts\ConstrScripts\ConstrctPlace.cs" />
     <Compile Include="Assets\Scripts\DeadPlayer.cs" />
     <Compile Include="Assets\Scripts\Die.cs" />
     <Compile Include="Assets\Scripts\DoorOpen.cs" />
-    <Compile Include="Assets\Scripts\EscapeMenu.cs" />
     <Compile Include="Assets\Scripts\EscapeScript.cs" />
-    <Compile Include="Assets\Scripts\ExitGameScript.cs" />
     <Compile Include="Assets\Scripts\FallenDie.cs" />
     <Compile Include="Assets\Scripts\FallPlatform.cs" />
+    <Compile Include="Assets\Scripts\FalseScriptArea.cs" />
     <Compile Include="Assets\Scripts\HidingPressButton.cs" />
+    <Compile Include="Assets\Scripts\InventoryScripts\AddItemPlAYER.cs" />
+    <Compile Include="Assets\Scripts\InventoryScripts\DataBase.cs" />
+    <Compile Include="Assets\Scripts\InventoryScripts\DeleteItem.cs" />
+    <Compile Include="Assets\Scripts\InventoryScripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\LevelArm.cs" />
+    <Compile Include="Assets\Scripts\Localization\BtnSwitchLang.cs" />
+    <Compile Include="Assets\Scripts\Localization\LocalizationData.cs" />
+    <Compile Include="Assets\Scripts\Localization\LocalizationManager.cs" />
+    <Compile Include="Assets\Scripts\Localization\LocalizedText.cs" />
     <Compile Include="Assets\Scripts\NextLevelScript.cs" />
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\AccelerContr.cs" />
+    <Compile Include="Assets\Scripts\PlayerControllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PressButton.cs" />
-    <Compile Include="Assets\Scripts\RiddleCode.cs" />
-    <Compile Include="Assets\Scripts\RiddleController.cs" />
-    <Compile Include="Assets\Scripts\RidllePressButton.cs" />
-    <Compile Include="Assets\Scripts\StartMenu.cs" />
+    <Compile Include="Assets\Scripts\Riddles\PressButtonRiddle2.cs" />
+    <Compile Include="Assets\Scripts\Riddles\Riddle2Code.cs" />
+    <Compile Include="Assets\Scripts\Riddles\RiddleCode.cs" />
+    <Compile Include="Assets\Scripts\Riddles\RiddleController.cs" />
+    <Compile Include="Assets\Scripts\Riddles\RidllePressButton.cs" />
+    <Compile Include="Assets\Scripts\Riddles\SummRiddle2.cs" />
+    <Compile Include="Assets\Scripts\ShowUpTurns.cs" />
+    <Compile Include="Assets\Scripts\TextOpenDoor.cs" />
     <Compile Include="Assets\Scripts\Thorns.cs" />
+    <Compile Include="Assets\Scripts\TrueExit.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\ActivateButtonLvl.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\ColorScript.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\EscapeMenu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\FastClick.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Scale.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\StartMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -117,6 +141,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\options.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
@@ -126,6 +151,7 @@
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\ClassDiagram3.cd" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
@@ -137,40 +163,40 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/MAXIM/Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -344,13 +370,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/MAXIM/Game/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/MAXIM/Game/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/MAXIM/Game/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/MAXIM/Game/GameProject/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AddItemPlAYER">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAACIAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\InventoryScripts\AddItemPlAYER.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Додається_до" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataBase">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\InventoryScripts\DataBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Містить" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Item">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAgAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\InventoryScripts\DataBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Підбирається" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Inventory">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AxSABAAAADBACAAAAAggQEQAgAIgAAAAKaAaAQBAAAA=</HashCode>
+      <FileName>Assets\Scripts\InventoryScripts\Inventory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Містить" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ItemInventory">
+    <Position X="3.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\InventoryScripts\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioActivate">
+    <Position X="17.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAWAAACQAAQAAAAACIBAIAIBAAEAAAEAAAgAAIgA=</HashCode>
+      <FileName>Assets\Scripts\Audio\AudioActivate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CheckAudio">
+    <Position X="20.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAASQIAAAAAAACAAAIAAAEAACQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Audio\CheckAudio.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Перевіряє" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ConstrctPlace">
+    <Position X="6.25" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACABAAAAABAAAEAAAAAAUAQAAACAAAAAARAAgA=</HashCode>
+      <FileName>Assets\Scripts\ConstrScripts\ConstrctPlace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyGame.Localization.Locale">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAQAAAQAAAAAAAAAAAAgAAIAAgAAIIAKAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyGame\Localization\Scripts\Locale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyGame.Localization.Localize">
+    <Position X="21.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAABAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MyGame\Localization\Scripts\Localize.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyGame.Localization.LocalizeBase">
+    <Position X="21.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACgAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\MyGame\Localization\Scripts\LocalizeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuManager">
+    <Position X="18.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAABAAQ=</HashCode>
+      <FileName>Assets\MyGame\Localization\Intro\Scripts\MenuManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Локалізує" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AccelerContr">
+    <Position X="26.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwBAAAAAAiAAAgAQACAAAAABACAIAQAQIABgAAEgAAI=</HashCode>
+      <FileName>Assets\Scripts\PlayerControllers\AccelerContr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="10" Y="12.25" Width="1.5" />
+    <AssociationLine Name="Активує" Type="NextLevelScript">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.926" Y="0.148" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CwRABAAAAiBCAgAwACAAAAgBACAIIQAQIABiABFgAgI=</HashCode>
+      <FileName>Assets\Scripts\PlayerControllers\PlayerController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Вмирає" />
+      <Property Name="Активує" />
+      <Property Name="Тисне_на" />
+      <Property Name="Пересувається_завдяки" />
+      <Property Name="Die" />
+      <Property Name="Вмирає_від" />
+      <Property Name="Становиться_на" />
+      <Property Name="DeadPlayer" />
+      <Property Name="Збирає" />
+      <Property Name="Взаємодіє_з" />
+      <Property Name="Відкриває" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PressButtonRiddle2">
+    <Position X="0.5" Y="14.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACJAAAAQAAAAAAAgAAAACAAAAAAgAACAAAA=</HashCode>
+      <FileName>Assets\Scripts\Riddles\PressButtonRiddle2.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Активує" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Riddle2Code">
+    <Position X="4" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgCAoQAAAEAAAAAAAAAAgAAAACAAEAAAEIIA=</HashCode>
+      <FileName>Assets\Scripts\Riddles\Riddle2Code.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiddleCode">
+    <Position X="4.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAAACAAAIAAAAAoAAAAAAQAAAAAAAAAAAAIAIA=</HashCode>
+      <FileName>Assets\Scripts\Riddles\RiddleCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RiddleController">
+    <Position X="1.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAQAAAAAABAAAAAAAAAQAAAAAAAgAAAAIAIQ=</HashCode>
+      <FileName>Assets\Scripts\Riddles\RiddleController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Перевіряє" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RidllePressButton">
+    <Position X="1.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAASIQAIAQAAAQAAAAAAAACAAAAAAggACAACA=</HashCode>
+      <FileName>Assets\Scripts\Riddles\RidllePressButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Набирає" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SummRiddle2">
+    <Position X="3.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Riddles\SummRiddle2.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Накопичує" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ActivateButtonLvl">
+    <Position X="17.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACAAAAABAAACQIAAAMw7AAAgAAAAQAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI Scripts\ActivateButtonLvl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EscapeMenu">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgCAAAgABAJAAAAKAABAAAAAAIgBAAAAAAAAAgAwA=</HashCode>
+      <FileName>Assets\Scripts\UI Scripts\EscapeMenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Активує" />
+      <Property Name="Повертає_да" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FastClick">
+    <Position X="6" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAQAUAAgAAMAEAAAEAAAAAAAAAAAAgAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI Scripts\FastClick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scale">
+    <Position X="25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIAA=</HashCode>
+      <FileName>Assets\Scripts\UI Scripts\Scale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartMenu">
+    <Position X="15" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>vsMCKAAAwSBAEAAgUAACQEQAAgAAAAAAiACAEABAwgA=</HashCode>
+      <FileName>Assets\Scripts\UI Scripts\StartMenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Переходить_до" />
+      <Property Name="Аналізує" />
+      <Property Name="Активує" />
+      <Property Name="Перевіряє" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TrueExit">
+    <Position X="21" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TrueExit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActivateMovePlatformScript">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ActivateMovePlatformScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraController1">
+    <Position X="19" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAAAIAAAEAAAAAAgAAAQAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\CameraController1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ColorScript">
+    <Position X="17.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAQAAAACAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ColorScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ColoredElement">
+    <Position X="20.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ColorScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeadPlayer">
+    <Position X="11" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEAAAAAAAAAAAAAAAAAAAAAEAAAAQACAAAAAEgAAE=</HashCode>
+      <FileName>Assets\Scripts\DeadPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Die">
+    <Position X="8" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAgAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Die.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoorOpen">
+    <Position X="12.75" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\DoorOpen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FallenDie">
+    <Position X="16" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEgAAAAAAAAgAIAAAAAAAEAAAAAAAAAgAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\FallenDie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FallPlatform">
+    <Position X="12.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\FallPlatform.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Вмирає_від" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FalseScriptArea">
+    <Position X="17.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\FalseScriptArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HidingPressButton">
+    <Position X="15.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAICAAAQAAAAAIBAAAAAgAAAAAAgAACAIAA=</HashCode>
+      <FileName>Assets\Scripts\HidingPressButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelArm">
+    <Position X="6.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\LevelArm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Збирається_на" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="NextLevelScript">
+    <Position X="13.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACQAAAAEAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\NextLevelScript.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Містить" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="IndexScene">
+    <Position X="13.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\NextLevelScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlatformMove">
+    <Position X="8.25" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQBAAAAAKEAIAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PlatformMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PressButton">
+    <Position X="12.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAJAAAAQAAAAgAAAAAAACAAAAAAgAADAAAA=</HashCode>
+      <FileName>Assets\Scripts\PressButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Відкриває" />
+      <Property Name="HidingPressButton" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShowUpTurns">
+    <Position X="7.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgCAiAgAAAAAgAAAAAAAACgAAEAEIAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\ShowUpTurns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextOpenDoor">
+    <Position X="9" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAAAAAAAAAAEAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TextOpenDoor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Thorns">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAgAAAAAAAAAEAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Thorns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

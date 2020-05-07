@@ -9,26 +9,63 @@ using System.IO;
 [System.Serializable]
 public class NextLevelScript : MonoBehaviour
 {
-    //public int IndexOfLevel;
-    public void OnTriggerEnter2D(Collider2D Other)
-    {
-        List<int> ListCompletedScene = new List<int>();
+    private string path;
+    List<IndexScene> ListCompletedScene = new List<IndexScene>();
 
+ 
+
+    //public int IndexOfLevel;
+
+    public void OnTriggerEnter2D(Collider2D Other)
+    {  
+        
         if (Other.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
             // добавляем в массив текущий индекс сцены
-            ListCompletedScene.Add(SceneManager.GetActiveScene().buildIndex);
-        }
+           
+            ListCompletedScene.Add(new IndexScene(SceneManager.GetActiveScene().buildIndex));
 
-        //сохраняем текущий индекс сцены
-        
-        BinaryFormatter binformat = new BinaryFormatter();
-        using (FileStream fstream = new FileStream("level_completed", FileMode.OpenOrCreate, FileAccess.Write))
-        {
-            binformat.Serialize(fstream, ListCompletedScene);
+           
         }
-        
+        // SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex);
+#if UNITY_ANDROID && !UNITY_EDITOR
+            path = Path.Combine(Application.persistentDataPath, "level_completed");
+#else
+        path = Path.Combine(Application.dataPath, "level_completed");
+
+#endif      //сохраняем текущий индекс сцены
+        BinaryFormatter binformat = new BinaryFormatter();
+
+        if (File.Exists(path))
+        {
+            using (FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Write))
+            {
+                binformat.Serialize(fstream, ListCompletedScene);
+            }
+        }
+        else
+        {
+            using (FileStream fstream = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                binformat.Serialize(fstream, ListCompletedScene);
+            }
+        }
+       
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    
+}
+
+
+[System.Serializable]
+public class IndexScene
+{
+   public int Index;
+    public IndexScene(int Index)
+    {
+        this.Index = Index;
+    }
+    
 }

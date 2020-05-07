@@ -12,6 +12,31 @@ public class PressButton : MonoBehaviour
     public bool stateOFdoor=false;
     public GameObject objectd;
 
+    public DoorOpen Відкриває
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    public HidingPressButton Змінюється_на
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    public TrueExit Активує
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+
     //public void OnTriggerEnter2D(Collider2D Other)
     //{
 
@@ -40,15 +65,22 @@ public class PressButton : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            stateOFdoor = true;
-            objectd.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOFdoor);
+            
+            try
+            {
+                stateOFdoor = true;
+                objectd.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOFdoor);
+            }
+            catch
+            {
+
+            }
+            
         }
     }
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-
         GetComponentInChildren<SpriteRenderer>().sprite = switchOffBut;
-
     }
 }
