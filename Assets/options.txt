@@ -1,2 +1,2 @@
-Music = true
-Sound = true
+Music = false
+Sound = false

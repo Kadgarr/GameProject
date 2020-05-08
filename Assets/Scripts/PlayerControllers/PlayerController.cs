@@ -15,24 +15,31 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D Rbody;
     private SpriteRenderer Sprite;
 
-  
+   
 
     void Start()
     {
         Rbody = GetComponent<Rigidbody2D>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         Anim = GetComponent<Animator>();
-
     }
 
     void Update()
     {
-        Run();
-        /*ver = Input.GetAxis("Vertical");
-        if (ver == 0f)
-             Anim.SetBool("IsRun", false);
         
-         if (Input.GetButton("Horizontal"))
+        ver = Input.GetAxis("Vertical");
+
+        if (ver == 0f)
+            Anim.SetBool("IsRun", false);
+        
+
+        if ((horizontalspeed == 1) || (horizontalspeed == -1))
+        {
+            Anim.SetBool("IsRun", true);
+        }
+
+        Run();
+                 /*if (Input.GetButton("Horizontal"))
          {
              Anim.SetBool("IsRun", true);
              Run();
@@ -42,19 +49,18 @@ public class PlayerController : MonoBehaviour
              Anim.SetBool("IsJump", true);
              Jump();
          }*/
+     
     }
     
     public void ButtonRight()
     {
         Anim.SetBool("IsRun", true);
-        Speed = horizontalspeed;
         Sprite.flipX = false;
     }
 
     public void ButtonLeft()
     {
         Anim.SetBool("IsRun", true);
-        Speed = -horizontalspeed;
         Sprite.flipX = true;
     }
 
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void Run()
     {
-        transform.Translate(Speed * Time.deltaTime, 0, 0);
+        transform.Translate(Speed *horizontalspeed* Time.deltaTime, 0, 0);
         //Клавиатурное управление
        /* Vector3 direction = transform.right * Input.GetAxis("Horizontal");
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, Speed * Time.deltaTime);
