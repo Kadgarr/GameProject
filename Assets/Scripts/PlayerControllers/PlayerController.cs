@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float Speed;
     public float horizontalspeed;
+    public float horizontalspeed2;
     public float JumpForce;
     private bool IsGround = false;
     private float ver;
@@ -55,12 +56,14 @@ public class PlayerController : MonoBehaviour
     public void ButtonRight()
     {
         Anim.SetBool("IsRun", true);
+        Speed = horizontalspeed2;
         Sprite.flipX = false;
     }
 
     public void ButtonLeft()
     {
         Anim.SetBool("IsRun", true);
+        Speed = -horizontalspeed2;
         Sprite.flipX = true;
     }
 

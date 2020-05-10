@@ -1191,8 +1191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec7db58a3636274fbda3487d3d4a718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  horizontalspeed: 3.8
+  Speed: 3.8
+  horizontalspeed: 0
   JumpForce: 12.8
 --- !u!50 &428867965
 Rigidbody2D:
@@ -3908,7 +3908,7 @@ GameObject:
   - component: {fileID: 1484849782}
   - component: {fileID: 1484849783}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: SpriteB
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
