@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
-  horizontalspeed: 1
+  horizontalspeed: 0
   horizontalspeed2: 3.8
   JumpForce: 12.8
 --- !u!50 &428867965

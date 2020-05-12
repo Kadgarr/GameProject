@@ -10,6 +10,7 @@ public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if(gameObject.name== "ButtonLeft")
         {
             GameObject.Find("Sprite").GetComponent<PlayerController>().horizontalspeed = -1;
+            
         }
         else
         if(gameObject.name == "ButtonRight")

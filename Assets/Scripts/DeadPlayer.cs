@@ -29,8 +29,8 @@ public class DeadPlayer : MonoBehaviour
             Anim.enabled = false;
             GetComponentInChildren<SpriteRenderer>().sprite = SpriteDead;
             
-            ButRight.GetComponentInChildren<EventTrigger>().enabled = false;
-            ButLeft.GetComponentInChildren<EventTrigger>().enabled = false;
+            /*ButRight.GetComponentInChildren<EventTrigger>().enabled = false;
+            ButLeft.GetComponentInChildren<EventTrigger>().enabled = false;*/
             ButUp.GetComponent<EventTrigger>().enabled = false;
             stateForTimer = true;
             try

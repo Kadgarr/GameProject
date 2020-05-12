@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float JumpForce;
     private bool IsGround = false;
     private float ver;
+    private bool check14lvl = false;
     bool CheckAnim = false;
 
     private Animator Anim;
@@ -36,10 +37,26 @@ public class PlayerController : MonoBehaviour
 
         if ((horizontalspeed == 1) || (horizontalspeed == -1))
         {
-            Anim.SetBool("IsRun", true);
+            if (horizontalspeed == 1)
+            {
+                Sprite.flipX = false;
+                Anim.SetBool("IsRun", true);
+            }
+
+            if (horizontalspeed == -1)
+            {
+                Sprite.flipX = true;
+                Anim.SetBool("IsRun", true);
+            }
+            
         }
 
         Run();
+
+        if (check14lvl == true)
+        {
+            RunBardak();
+        }
                  /*if (Input.GetButton("Horizontal"))
          {
              Anim.SetBool("IsRun", true);
@@ -55,7 +72,8 @@ public class PlayerController : MonoBehaviour
     
     public void ButtonRight()
     {
-        Anim.SetBool("IsRun", true);
+        
+        check14lvl = true;
         Speed = horizontalspeed2;
         Sprite.flipX = false;
     }
@@ -63,6 +81,7 @@ public class PlayerController : MonoBehaviour
     public void ButtonLeft()
     {
         Anim.SetBool("IsRun", true);
+        check14lvl = true;
         Speed = -horizontalspeed2;
         Sprite.flipX = true;
     }
@@ -72,6 +91,7 @@ public class PlayerController : MonoBehaviour
         Anim.SetBool("IsRun", false);
         Anim.SetBool("IsJump", false);
         Speed = 0;
+        check14lvl = false;
     }
 
     public void JumpButton()
@@ -85,11 +105,23 @@ public class PlayerController : MonoBehaviour
 
     public void Run()
     {
+        
         transform.Translate(Speed *horizontalspeed* Time.deltaTime, 0, 0);
         //Клавиатурное управление
        /* Vector3 direction = transform.right * Input.GetAxis("Horizontal");
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, Speed * Time.deltaTime);
         Sprite.flipX = direction.x < 0f;*/
+    }
+
+    public void RunBardak()
+    {
+        transform.Translate(Speed * Time.deltaTime, 0, 0);
+        Anim.SetBool("IsRun", true);
+        //Клавиатурное управление
+        /* Vector3 direction = transform.right * Input.GetAxis("Horizontal");
+         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, Speed * Time.deltaTime);
+         Sprite.flipX = direction.x < 0f;*/
+
     }
 
     public void Jump()
