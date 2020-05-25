@@ -61,7 +61,7 @@ public class AudioActivate : MonoBehaviour
             
             using (StreamReader sr = new StreamReader(path))
             {
-                textFile = sr.ReadLine();
+                textFile = sr.ReadLine(); 
             }
            
             soundOnOff = textFile.Substring(8);
