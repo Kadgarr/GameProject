@@ -81,6 +81,7 @@ public class ConstrctPlace : MonoBehaviour
                     {
 
                     }
+                    this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 }
             }
             

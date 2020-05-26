@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 228451068}
   - component: {fileID: 228451069}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprites
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2729,7 +2729,7 @@ GameObject:
   - component: {fileID: 735035103}
   - component: {fileID: 735035104}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3292,7 +3292,7 @@ GameObject:
   - component: {fileID: 1045542543}
   - component: {fileID: 1045542544}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5184,7 +5184,7 @@ GameObject:
   - component: {fileID: 1565675905}
   - component: {fileID: 1565675906}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5545,7 +5545,7 @@ GameObject:
   - component: {fileID: 1661003221}
   - component: {fileID: 1661003222}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite6
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5634,22 +5634,22 @@ PrefabInstance:
     - target: {fileID: 6163132869416202580, guid: 5be7489afdbafda469ddb82ff6a8ec45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1
+      value: -50.5
       objectReference: {fileID: 0}
     - target: {fileID: 6163132869416202580, guid: 5be7489afdbafda469ddb82ff6a8ec45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.9
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6163132869416202580, guid: 5be7489afdbafda469ddb82ff6a8ec45,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 88.4301
+      value: 107.00042
       objectReference: {fileID: 0}
     - target: {fileID: 6163132869416202580, guid: 5be7489afdbafda469ddb82ff6a8ec45,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 100.18419
+      value: 110.202614
       objectReference: {fileID: 0}
     - target: {fileID: 8914517788347531350, guid: 5be7489afdbafda469ddb82ff6a8ec45,
         type: 3}

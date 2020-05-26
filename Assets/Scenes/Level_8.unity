@@ -1559,6 +1559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.8
   horizontalspeed: 0
+  horizontalspeed2: 0
   JumpForce: 12.8
 --- !u!50 &428867965
 Rigidbody2D:
@@ -4825,7 +4826,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3330330647875330871, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
+    - {fileID: 1894103548, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
+    - {fileID: 809757046, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
 --- !u!1 &1298610041 stripped
 GameObject:

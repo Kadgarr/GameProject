@@ -286,7 +286,7 @@ PrefabInstance:
     - target: {fileID: 6670173141761670197, guid: 5909873535734a24797a27ad466a2c1e,
         type: 3}
       propertyPath: IndexScene
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6670173141761670197, guid: 5909873535734a24797a27ad466a2c1e,
         type: 3}
@@ -387,6 +387,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FallenObjectTurns (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862035659572491578, guid: 5909873535734a24797a27ad466a2c1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5909873535734a24797a27ad466a2c1e, type: 3}
@@ -1979,12 +1984,17 @@ PrefabInstance:
     - target: {fileID: 6108745350229746159, guid: a67ab91a7597cf246a4de858ae5cf542,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.03603804
+      value: 2.83
       objectReference: {fileID: 0}
     - target: {fileID: 6108745350229746159, guid: a67ab91a7597cf246a4de858ae5cf542,
         type: 3}
       propertyPath: m_Size.y
       value: 1.3544099
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108745350229746159, guid: a67ab91a7597cf246a4de858ae5cf542,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67ab91a7597cf246a4de858ae5cf542, type: 3}
@@ -2603,7 +2613,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3330330647875330871, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
+    - {fileID: 1894103548, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
+    - {fileID: 809757046, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b53093a27c875bd49b740f3f8c17e852, type: 3}
 --- !u!1 &580109841 stripped
 GameObject:
@@ -2654,7 +2667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623251127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.24, y: 0.71, z: 0}
+  m_LocalPosition: {x: -7.86, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428867961}
@@ -3107,7 +3120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.37105656, y: 2.2148395}
+  m_Offset: {x: 0.3812127, y: 2.2148395}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3118,7 +3131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4926624, y: 0.12172508}
+  m_Size: {x: 2.997201, y: 0.12172508}
   m_EdgeRadius: 0
 --- !u!1 &879251799
 GameObject:
@@ -4901,7 +4914,7 @@ PrefabInstance:
     - target: {fileID: 6670173141761670197, guid: 5909873535734a24797a27ad466a2c1e,
         type: 3}
       propertyPath: IndexScene
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6670173141761670197, guid: 5909873535734a24797a27ad466a2c1e,
         type: 3}
@@ -5002,6 +5015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'FallenObjectTurns '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7862035659572491578, guid: 5909873535734a24797a27ad466a2c1e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7862035660953159811, guid: 5909873535734a24797a27ad466a2c1e,
         type: 3}

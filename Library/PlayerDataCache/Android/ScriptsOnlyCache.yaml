@@ -639,6 +639,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10528}
     - Class: 114
+      Script: {instanceID: 10768}
+    - Class: 114
       Script: {instanceID: 10820}
     - Class: 114
       Script: {instanceID: 10900}
@@ -2671,4 +2673,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level_14.unity
   - Assets/Scenes/Level_15.unity
   - Assets/Scenes/EndScene.unity
-  playerPath: C:/Users/MAXIM/GameAndroid/TestVersion26_05(1).apk
+  playerPath: C:/Users/MAXIM/GameAndroid/TestVersion26_05(2).apk
