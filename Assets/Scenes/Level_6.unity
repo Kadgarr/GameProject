@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 26142221}
   - component: {fileID: 26142222}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite3
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2064,6 +2064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.8
   horizontalspeed: 0
+  horizontalspeed2: 0
   JumpForce: 12.8
 --- !u!50 &428867965
 Rigidbody2D:
@@ -3310,7 +3311,7 @@ GameObject:
   - component: {fileID: 780506531}
   - component: {fileID: 780506532}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4373,7 +4374,7 @@ GameObject:
   - component: {fileID: 1116792644}
   - component: {fileID: 1116792645}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5808,7 +5809,7 @@ GameObject:
   - component: {fileID: 2057247003}
   - component: {fileID: 2057247004}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

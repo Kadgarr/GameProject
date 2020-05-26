@@ -1696,6 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.8
   horizontalspeed: 0
+  horizontalspeed2: 0
   JumpForce: 12.8
 --- !u!50 &428867965
 Rigidbody2D:

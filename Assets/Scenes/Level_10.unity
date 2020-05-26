@@ -1632,6 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3.8
   horizontalspeed: 0
+  horizontalspeed2: 0
   JumpForce: 12.8
 --- !u!50 &428867965
 Rigidbody2D:
@@ -4927,6 +4928,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1213732788, guid: 232053a1a59eddc4e840e83426453367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1213732790, guid: 232053a1a59eddc4e840e83426453367, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
