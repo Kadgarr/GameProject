@@ -70,7 +70,7 @@ public class ConstrctPlace : MonoBehaviour
                     }
                 }
                 if (Counter >= countItemInv)
-                {
+                {   
                     canvasCircleButton.gameObject.SetActive(true);
 
                     try

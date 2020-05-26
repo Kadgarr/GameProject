@@ -3795,7 +3795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0999999, z: -10}
+  m_LocalPosition: {x: 0, y: -0.23, z: -10}
   m_LocalScale: {x: 1, y: 0.30215478, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4892,7 +4892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623251127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.33, y: 0.77, z: 0}
+  m_LocalPosition: {x: -8.43, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428867961}
@@ -11465,6 +11465,11 @@ PrefabInstance:
       propertyPath: diePlayer
       value: 
       objectReference: {fileID: 428867960}
+    - target: {fileID: 7508118695630385070, guid: 86d549f728595244ab176b691fbcc44a,
+        type: 3}
+      propertyPath: filling
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 7508118695630385071, guid: 86d549f728595244ab176b691fbcc44a,
         type: 3}
       propertyPath: Player
