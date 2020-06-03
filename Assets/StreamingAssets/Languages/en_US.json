@@ -159,7 +159,10 @@
     {
       "key": "InfoText",
       "value": "\"Darkness Inside is a game where you have to show smartness, imagination and a good reaction. You need to go through levels at which you will need to solve certain puzzles to advance to the next level while combining an element of the gameplay of the platformer! Have a nice game! \" Developer: Bozhik Maxim"
+    },
+    {
+      "key": "push_button",
+      "value": "PUSH!!!"
     }
-
   ]
 }
