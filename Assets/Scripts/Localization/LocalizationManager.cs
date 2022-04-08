@@ -103,12 +103,4 @@ public class LocalizationManager : MonoBehaviour
         }
          
     }
-
-    public LocalizationData Локалізує
-    {
-        get => default;
-        set
-        {
-        }
-    }
 }

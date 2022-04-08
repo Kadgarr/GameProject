@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using Assets.Scripts.Audio;
 
 public class CheckAudio : MonoBehaviour
 {
@@ -39,63 +40,66 @@ public class CheckAudio : MonoBehaviour
         {
 
         }
-        
-#if UNITY_ANDROID && !UNITY_EDITOR
-        path = Path.Combine(Application.persistentDataPath, "level_completed");
-#else
-        path = Path.Combine(Application.dataPath, "options.txt");
-#endif
 
+#if UNITY_ANDROID && !UNITY_EDITOR
+        path = Path.Combine(Application.persistentDataPath, "options.json");
+#else
+        path = Path.Combine(Application.dataPath, "options.json");
+#endif
+       
         if (!File.Exists(path))
         {
-            using (StreamWriter fstream = new StreamWriter(path, true, System.Text.Encoding.Default))
-            {
-                fstream.WriteLine(On_Off);
-            }
+            OptionMusSound options = new OptionMusSound();
+            string soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
+
         }
 
 
         if (File.Exists(path))
         {
 
-            using (StreamReader sr = new StreamReader(path))
-            {
-                textFile = sr.ReadLine();
-            }
+            //using (StreamReader sr = new StreamReader(path))
+            //{
+            //    textFile = sr.ReadLine();
+            //}
+            soundOnOff = File.ReadAllText(path);
+            var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
+            //soundOnOff = textFile.Substring(8);
 
-            soundOnOff = textFile.Substring(8);
 
-
-            if (soundOnOff == "false")
+            if (options.musicOp == false)
             {
                 GetComponent<AudioSource>().Stop();
             }
 
-            if (soundOnOff == "true")
+            if (options.musicOp == true)
             {
                 GetComponent<AudioSource>().Play();
             }
 
-            textFile = "";
-            soundOnOff = "";
+            //textFile = "";
+            //soundOnOff = "";
         }
         
 
         if (File.Exists(path))
         {
 
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    for (int i = 0; i < 2; i++)
-                    {
-                        textFile = sr.ReadLine();
-                    }
-                }
+            //using (StreamReader sr = new StreamReader(path))
+            //{
+            //    for (int i = 0; i < 2; i++)
+            //    {
+            //        textFile = sr.ReadLine();
+            //    }
+            //}
 
-                soundOnOff = textFile.Substring(8);
+            //soundOnOff = textFile.Substring(8);
 
+            soundOnOff = File.ReadAllText(path);
+            var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
 
-                if (soundOnOff == "false")
+            if (options.soundOp == false)
                 {
                     sound1.enabled = false;
                     try
@@ -108,7 +112,7 @@ public class CheckAudio : MonoBehaviour
                     }
                 }
 
-                if (soundOnOff == "true")
+                if (options.soundOp == true)
                 {
                     sound1.enabled = true;
                     
@@ -122,8 +126,8 @@ public class CheckAudio : MonoBehaviour
                     }
                 }
 
-                textFile = "";
-                soundOnOff = "";
+                //textFile = "";
+                //soundOnOff = "";
             
         }
         

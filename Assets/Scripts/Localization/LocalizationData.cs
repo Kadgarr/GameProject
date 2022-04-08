@@ -6,14 +6,6 @@ using UnityEngine;
 public class LocalizationData 
 {
     public LocalizationItem[] items;
-
-    public LocalizationItem Містить
-    {
-        get => default;
-        set
-        {
-        }
-    }
 }
 
 [System.Serializable]

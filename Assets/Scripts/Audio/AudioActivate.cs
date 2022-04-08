@@ -4,16 +4,17 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
-
+using System.Linq;
+using Assets.Scripts.Audio;
 
 public class AudioActivate : MonoBehaviour
 {
     // Start is called before the first frame update
     private string path;
 
-    private string On_Off= "Music = true\nSound = true";
+    //private string On_Off= "Music = true\nSound = true";
 
-    private string textFile;
+    //private string textFile;
 
     private string soundOnOff="";
 
@@ -35,20 +36,22 @@ public class AudioActivate : MonoBehaviour
 
     AudioSource background;
 
+   
     private void Start()
     {
+        OptionMusSound options = new OptionMusSound();
         BinaryFormatter binformat = new BinaryFormatter();
 #if UNITY_ANDROID && !UNITY_EDITOR
-        path = Path.Combine(Application.persistentDataPath, "level_completed");
+        path = Path.Combine(Application.persistentDataPath, "options.json");
 #else
-        path = Path.Combine(Application.dataPath, "options.txt");
+        path = Path.Combine(Application.dataPath, "options.json");
 #endif
         if (!File.Exists(path))
         {
-            using (FileStream fstream = new FileStream(path, FileMode.Create, FileAccess.Write))
-            {
-                binformat.Serialize(fstream, On_Off);
-            }
+            options.musicOp = true;
+            options.musicOp = true;
+           string soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
         }  
 
         butSwitch = Button.GetComponent<Image>();
@@ -58,65 +61,60 @@ public class AudioActivate : MonoBehaviour
 
         if (File.Exists(path))
         {
-            
-            using (StreamReader sr = new StreamReader(path))
-            {
-                textFile = sr.ReadLine(); 
-            }
-           
-            soundOnOff = textFile.Substring(8);
-            
+           soundOnOff= File.ReadAllText(path);
+            options =JsonUtility.FromJson<OptionMusSound>(soundOnOff);
 
-            if (soundOnOff == "false")
+
+            if (options.musicOp==false)
             {
                 butSwitch.sprite = MelodyOff;
                 background.Stop();
             }
                 
-            if (soundOnOff == "true")
+            if (options.musicOp == true)
             {
                 
                 butSwitch.sprite = MelodyOn;
                 
             }
 
-            textFile = "";
-            soundOnOff = "";
+            
+            //soundOnOff = "";
 
-            using (StreamReader str = new StreamReader(path))
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    textFile = str.ReadLine();
-                }
-            }
+            //using (StreamReader str = new StreamReader(path))
+            //{
+            //    for (int i = 0; i < 2; i++)
+            //    {
+            //        textFile = str.ReadLine();
+            //    }
+            //}
 
-            soundOnOff = textFile.Substring(8);
+            //soundOnOff = textFile.Substring(8);
 
 
-            if (soundOnOff == "false")
+            if (options.soundOp == false)
             {
                 butSwitch2.sprite = DynamicOff;
             }
 
-            if (soundOnOff == "true")
+            if (options.soundOp == true)
             {
                 butSwitch2.sprite = DynamicOn;
             }
 
-            textFile = "";
-            soundOnOff = "";
+            //textFile = "";
+            //soundOnOff = "";
 
-            using (StreamReader str = new StreamReader(path))
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    textFile = str.ReadLine();
-                }
-            }
+            //using (StreamReader str = new StreamReader(path))
+            //{
+            //    for (int i = 0; i < 2; i++)
+            //    {
+            //        textFile = str.ReadLine();
+            //    }
+            //}
 
-            textFile = "";
-            soundOnOff = "";
+            //textFile = "";
+            //soundOnOff = "";
         }
 
         
@@ -124,93 +122,97 @@ public class AudioActivate : MonoBehaviour
 
     public void ClickOnOfAudio()
     {
+        //OptionMusSound options = new OptionMusSound();
         Click.Play();
-        using (StreamReader sr = new StreamReader(path))
-        {
-            textFile = sr.ReadLine(); 
-        }
+        soundOnOff = File.ReadAllText(path);
+        var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
+        
         //print(textFile);
-        soundOnOff = textFile.Substring(8);
+        //soundOnOff = textFile.Substring(8);
         
 
 
         //ПОЧЕМУ ТО НА 2 СИМВОЛА ПОКАЗЫВАЕТ БОЛЬШЕ ЧЕМ НУЖНО
 
-        if (soundOnOff=="false")
+        if (options.musicOp==false)
         {
-            string[] readText = File.ReadAllLines(path);
+            //string[] readText = File.ReadAllLines(path);
 
-            readText[0] = "Music = true";
-
-            File.WriteAllLines(path, readText);
-
+            //readText[0] = "Music = true";
+            options.musicOp = true;
+            soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
             butSwitch.sprite = MelodyOn;
             background.Play();
         }
-
         else
-
-        if (soundOnOff == "true")
+        if (options.musicOp == true)
         {
-            string[] readText = File.ReadAllLines(path);
+            //string[] readText = File.ReadAllLines(path);
 
-            readText[0] = "Music = false";
+            //readText[0] = "Music = false";
 
-            File.WriteAllLines(path, readText);
-
+            options.musicOp = false;
+            soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
             butSwitch.sprite = MelodyOff;
             background.Stop();
         }
-        textFile = "";
+        soundOnOff = "";
     }
 
     public void ClickSound()
     {
-        Click.Play();
-        using (StreamReader str = new StreamReader(path))
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                 textFile = str.ReadLine();
-            }
-        }
-
-        soundOnOff = textFile.Substring(8);
         
+        Click.Play();
+        soundOnOff = File.ReadAllText(path);
+        var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
+        //using (StreamReader str = new StreamReader(path))
+        //{
+        //    for (int i = 0; i < 2; i++)
+        //    {
+        //        textFile = str.ReadLine();
+        //    }
+        //}
+
+        //soundOnOff = textFile.Substring(8);
+
 
         //ПОЧЕМУ ТО НА 2 СИМВОЛА ПОКАЗЫВАЕТ БОЛЬШЕ ЧЕМ НУЖНО
 
-        if (soundOnOff == "false")
+        if (options.soundOp == false)
         {
-            string[] readText = File.ReadAllLines(path);
+            //string[] readText = File.ReadAllLines(path);
 
-            readText[1] = "Sound = true";
+            //readText[1] = "Sound = true";
 
-            File.WriteAllLines(path, readText);
-           
+            options.soundOp = true;
+            soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
             Click.enabled = true;
             Click.Play();
             butSwitch2.sprite = DynamicOn;
-        
+
         }
 
         else
 
-        if (soundOnOff == "true")
+        if (options.soundOp==true)
         {
 
-            string[] readText = File.ReadAllLines(path);
+            //string[] readText = File.ReadAllLines(path);
 
-            readText[1] = "Sound = false";
+            //readText[1] = "Sound = false";
 
-            File.WriteAllLines(path, readText);
-            
+            options.soundOp = false;
+            soundOnOff = JsonUtility.ToJson(options);
+            File.WriteAllText(path, soundOnOff);
             Click.enabled = false;
             butSwitch2.sprite = DynamicOff;
-         
+
         }
-        
-        textFile = "";
+
+        soundOnOff = "";
 
     }
 }

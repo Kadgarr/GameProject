@@ -84,7 +84,7 @@
   <Class Name="PlayerController">
     <Position X="12.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AwRAAAAAAiAAAgAQACAAAAABACAIAAAQIABgAAEgAAI=</HashCode>
+      <HashCode>AwRAAAAAAiAAAgAQACAAAAABACAIAAAQIgBgAAEgAAI=</HashCode>
       <FileName>Assets\Scripts\PlayerControllers\PlayerController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -131,7 +131,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ActivateButtonLvl">
-    <Position X="20.25" Y="13.75" Width="1.5" />
+    <Position X="20" Y="16.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAACAAAAABAAACQIAAAMw7AAAgAAAAQAAQAAA=</HashCode>
       <FileName>Assets\Scripts\UI Scripts\ActivateButtonLvl.cs</FileName>
@@ -168,7 +168,7 @@
   <Class Name="StartMenu">
     <Position X="18" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>vsMCCAAAwCAAEAAgUAACQEQAAAAAAAAAiACAEABAwgA=</HashCode>
+      <HashCode>vsMCKAAAwCAAEAAgUAACYEQAAAAAACAAiACAEABAwgA=</HashCode>
       <FileName>Assets\Scripts\UI Scripts\StartMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -318,25 +318,22 @@
       <FileName>Assets\Scripts\Thorns.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LocalizationData" Collapsed="true">
-    <Position X="25" Y="10" Width="1.5" />
+  <Class Name="LocalizationData">
+    <Position X="20.75" Y="12.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Localization\LocalizationData.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Містить" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="LocalizationItem">
-    <Position X="25" Y="8" Width="1.5" />
+    <Position X="20.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Localization\LocalizationData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LocalizationManager">
-    <Position X="22.5" Y="11.5" Width="1.5" />
+    <Position X="22.5" Y="11.25" Width="1.75" />
     <NestedTypes>
       <Delegate Name="LocalizationManager.ChangeLangText" Collapsed="true">
         <TypeIdentifier>
@@ -345,22 +342,23 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ABAAAAAQAAABAAAAAAABAAAAAAAIAAAACAAAAAABAEA=</HashCode>
+      <HashCode>ABAAAAAQAAABAAAAAAABAAAAAAAIAAAACAAAAAAAAEA=</HashCode>
       <FileName>Assets\Scripts\Localization\LocalizationManager.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Локалізує" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="LocalizedText">
-    <Position X="25.25" Y="11.5" Width="1.5" />
+    <Position X="24.5" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAACgAAAIAAAAEAAAAAAAAAAAIAAAAAAAIAEA=</HashCode>
+      <HashCode>AAABAAAAACgAAAAAAAAEAAAAAAAAAAAIAAAAAAAIAEA=</HashCode>
       <FileName>Assets\Scripts\Localization\LocalizedText.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Передає" />
-    </ShowAsAssociation>
+  </Class>
+  <Class Name="BtnSwitchLang">
+    <Position X="20.5" Y="14.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Localization\BtnSwitchLang.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

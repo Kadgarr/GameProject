@@ -11,14 +11,6 @@ public class LocalizedText : MonoBehaviour
     private LocalizationManager localizationManager;
     private Text text;
 
-    public LocalizationManager Передає
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
     void Awake()
      {
          if (localizationManager == null)
