@@ -50,6 +50,8 @@ public class CheckAudio : MonoBehaviour
         if (!File.Exists(path))
         {
             OptionMusSound options = new OptionMusSound();
+            options.musicOp = true;
+            options.soundOp = true;
             string soundOnOff = JsonUtility.ToJson(options);
             File.WriteAllText(path, soundOnOff);
 
@@ -58,16 +60,9 @@ public class CheckAudio : MonoBehaviour
 
         if (File.Exists(path))
         {
-
-            //using (StreamReader sr = new StreamReader(path))
-            //{
-            //    textFile = sr.ReadLine();
-            //}
             soundOnOff = File.ReadAllText(path);
             var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-            //soundOnOff = textFile.Substring(8);
-
-
+            
             if (options.musicOp == false)
             {
                 GetComponent<AudioSource>().Stop();
@@ -78,23 +73,11 @@ public class CheckAudio : MonoBehaviour
                 GetComponent<AudioSource>().Play();
             }
 
-            //textFile = "";
-            //soundOnOff = "";
         }
         
 
         if (File.Exists(path))
         {
-
-            //using (StreamReader sr = new StreamReader(path))
-            //{
-            //    for (int i = 0; i < 2; i++)
-            //    {
-            //        textFile = sr.ReadLine();
-            //    }
-            //}
-
-            //soundOnOff = textFile.Substring(8);
 
             soundOnOff = File.ReadAllText(path);
             var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
@@ -126,8 +109,6 @@ public class CheckAudio : MonoBehaviour
                     }
                 }
 
-                //textFile = "";
-                //soundOnOff = "";
             
         }
         

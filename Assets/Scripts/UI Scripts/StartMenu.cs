@@ -37,7 +37,11 @@ public class StartMenu : MonoBehaviour
         path = Path.Combine(Application.dataPath, "level_completed");
 #endif
         BinaryFormatter binformat = new BinaryFormatter();
-
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
+        if (objs.Length > 0)
+        {
+            Destroy(objs[0]);
+        }
         try
         {
             using (FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read))

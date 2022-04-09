@@ -25,7 +25,6 @@ public class NextLevelScript : MonoBehaviour
            
             ListCompletedScene.Add(new IndexScene(SceneManager.GetActiveScene().buildIndex));
 
-           
         }
         // SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex);
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -50,7 +49,6 @@ public class NextLevelScript : MonoBehaviour
                 binformat.Serialize(fstream, ListCompletedScene);
             }
         }
-       
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -62,7 +60,7 @@ public class NextLevelScript : MonoBehaviour
 [System.Serializable]
 public class IndexScene
 {
-   public int Index;
+    public int Index;
     public IndexScene(int Index)
     {
         this.Index = Index;

@@ -7432,9 +7432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4cfb16ea77f17478d2b7856e122312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  butNewGame: {fileID: 0}
-  butContinueGame: {fileID: 0}
-  canvLevels: {fileID: 0}
+  butNewGame: {fileID: 666071353}
+  butContinueGame: {fileID: 1984045275}
+  canvLevels: {fileID: 43082393}
   canImage1: {fileID: 305654818}
   canImage2: {fileID: 1098748288}
   mainCanv: {fileID: 263977315}

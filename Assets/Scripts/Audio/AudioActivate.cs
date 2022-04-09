@@ -9,12 +9,9 @@ using Assets.Scripts.Audio;
 
 public class AudioActivate : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     private string path;
 
-    //private string On_Off= "Music = true\nSound = true";
-
-    //private string textFile;
 
     private string soundOnOff="";
 
@@ -73,23 +70,10 @@ public class AudioActivate : MonoBehaviour
                 
             if (options.musicOp == true)
             {
-                
                 butSwitch.sprite = MelodyOn;
-                
             }
 
-            
-            //soundOnOff = "";
-
-            //using (StreamReader str = new StreamReader(path))
-            //{
-            //    for (int i = 0; i < 2; i++)
-            //    {
-            //        textFile = str.ReadLine();
-            //    }
-            //}
-
-            //soundOnOff = textFile.Substring(8);
+           
 
 
             if (options.soundOp == false)
@@ -101,20 +85,6 @@ public class AudioActivate : MonoBehaviour
             {
                 butSwitch2.sprite = DynamicOn;
             }
-
-            //textFile = "";
-            //soundOnOff = "";
-
-            //using (StreamReader str = new StreamReader(path))
-            //{
-            //    for (int i = 0; i < 2; i++)
-            //    {
-            //        textFile = str.ReadLine();
-            //    }
-            //}
-
-            //textFile = "";
-            //soundOnOff = "";
         }
 
         
@@ -122,23 +92,14 @@ public class AudioActivate : MonoBehaviour
 
     public void ClickOnOfAudio()
     {
-        //OptionMusSound options = new OptionMusSound();
+        
         Click.Play();
         soundOnOff = File.ReadAllText(path);
         var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
         
-        //print(textFile);
-        //soundOnOff = textFile.Substring(8);
-        
-
-
-        //ПОЧЕМУ ТО НА 2 СИМВОЛА ПОКАЗЫВАЕТ БОЛЬШЕ ЧЕМ НУЖНО
 
         if (options.musicOp==false)
         {
-            //string[] readText = File.ReadAllLines(path);
-
-            //readText[0] = "Music = true";
             options.musicOp = true;
             soundOnOff = JsonUtility.ToJson(options);
             File.WriteAllText(path, soundOnOff);
@@ -148,10 +109,7 @@ public class AudioActivate : MonoBehaviour
         else
         if (options.musicOp == true)
         {
-            //string[] readText = File.ReadAllLines(path);
-
-            //readText[0] = "Music = false";
-
+           
             options.musicOp = false;
             soundOnOff = JsonUtility.ToJson(options);
             File.WriteAllText(path, soundOnOff);
@@ -167,25 +125,10 @@ public class AudioActivate : MonoBehaviour
         Click.Play();
         soundOnOff = File.ReadAllText(path);
         var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-        //using (StreamReader str = new StreamReader(path))
-        //{
-        //    for (int i = 0; i < 2; i++)
-        //    {
-        //        textFile = str.ReadLine();
-        //    }
-        //}
-
-        //soundOnOff = textFile.Substring(8);
-
-
-        //ПОЧЕМУ ТО НА 2 СИМВОЛА ПОКАЗЫВАЕТ БОЛЬШЕ ЧЕМ НУЖНО
+       
 
         if (options.soundOp == false)
         {
-            //string[] readText = File.ReadAllLines(path);
-
-            //readText[1] = "Sound = true";
-
             options.soundOp = true;
             soundOnOff = JsonUtility.ToJson(options);
             File.WriteAllText(path, soundOnOff);
@@ -199,11 +142,6 @@ public class AudioActivate : MonoBehaviour
 
         if (options.soundOp==true)
         {
-
-            //string[] readText = File.ReadAllLines(path);
-
-            //readText[1] = "Sound = false";
-
             options.soundOp = false;
             soundOnOff = JsonUtility.ToJson(options);
             File.WriteAllText(path, soundOnOff);
