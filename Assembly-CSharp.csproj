@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\NextLevelScript.cs" />
     <Compile Include="Assets\Scripts\EscapeScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\Scripts\Audio\DontDestroyMusic.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Riddles\RidllePressButton.cs" />
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="Assets\Scripts\Localization\LocalizationManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\Audio\DontDestroyMusic.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
