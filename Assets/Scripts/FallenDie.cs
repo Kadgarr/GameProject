@@ -11,6 +11,15 @@ public class FallenDie : MonoBehaviour
     public bool Check;
     public GameObject Player;
     bool CheckGround = false;
+    private BoxCollider2D[] childColliders;
+    private Rigidbody2D[] childBodies;
+
+    private void Awake()
+    {
+        childColliders = GetComponentsInChildren<BoxCollider2D>();
+        childBodies = GetComponentsInChildren<Rigidbody2D>();
+    }
+
     private void Update()
     {
         if (Check == true)
@@ -41,9 +50,9 @@ public class FallenDie : MonoBehaviour
         {
             CheckGround = true;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < childColliders.Length; i++)
             {
-                GetComponentsInChildren<BoxCollider2D>()[i].enabled = false;
+                childColliders[i].enabled = false;
             }
         }
 
@@ -57,9 +66,9 @@ public class FallenDie : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < childBodies.Length; i++)
             {
-                GetComponentsInChildren<Rigidbody2D>()[i].gravityScale = GravityScale;
+                childBodies[i].gravityScale = GravityScale;
             }
             
         }
