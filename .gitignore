@@ -112,3 +112,8 @@ The Forest HDRP/Temp
 The Forest HDRP/UserSettings
 The Forest HDRP/.collabignore
 The Forest HDRP/.vsconfig
+
+# Android signing keys (never commit)
+*.keystore
+*.jks
+*.slnx
