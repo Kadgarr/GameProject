@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class EscapeMenu : MonoBehaviour
 {
-    bool GameIsPaused = false;
+    public bool GameIsPaused { get; private set; }
     public GameObject pauseMenuObject;
     public Button ButtonUp;
     public Button ButtonLeft;

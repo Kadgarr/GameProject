@@ -23,7 +23,7 @@ public class FallPlatform : MonoBehaviour
             if (timer <= 0)
             {
                 timer = 0.3f;
-                GetComponent<Rigidbody2D>().isKinematic = false;
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 this.GetComponent<Rigidbody2D>().gravityScale = 2;
                 this.GetComponent<BoxCollider2D>().enabled = false;
             }

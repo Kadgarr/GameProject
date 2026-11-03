@@ -20,7 +20,6 @@ public class FastClick : MonoBehaviour
 
     private float minus = 0.05f;
 
-    bool checkForFillAmount = false;
     public bool checkForDesrtItem = false;
    
     void FixedUpdate()

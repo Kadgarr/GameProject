@@ -13,7 +13,6 @@ public class ShowUpTurns : MonoBehaviour
 
     private float progress2;
 
-    private int counter=0;
 
     public bool Check;
 

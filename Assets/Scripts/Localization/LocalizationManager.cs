@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -45,10 +46,20 @@ public class LocalizationManager : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            WWW reader = new WWW(path);
-            while (!reader.isDone) { }
+            // StreamingAssets на Android лежат внутри APK, поэтому читаем через UnityWebRequest (синхронно, как раньше с WWW)
+            using (UnityWebRequest request = UnityWebRequest.Get(path))
+            {
+                UnityWebRequestAsyncOperation operation = request.SendWebRequest();
+                while (!operation.isDone) { }
 
-            dataAsJson = reader.text;
+                if (request.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError("Failed to load localization '" + path + "': " + request.error);
+                    return;
+                }
+
+                dataAsJson = request.downloadHandler.text;
+            }
         }
         else
         {

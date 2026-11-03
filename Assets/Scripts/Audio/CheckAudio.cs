@@ -19,7 +19,6 @@ public class CheckAudio : MonoBehaviour
     AudioSource sound1;
     AudioSource sound2;
 
-    private string On_Off = "Music = true\nSound = true";
 
     public AudioActivate Перевіряє
     {

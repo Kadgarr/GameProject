@@ -75,7 +75,7 @@ public class StartMenu : MonoBehaviour
     public void Continue()
     {
         Click.Play();
-        Application.LoadLevel(indexForContinue+1);
+        SceneManager.LoadScene(indexForContinue + 1);
         
     }
 

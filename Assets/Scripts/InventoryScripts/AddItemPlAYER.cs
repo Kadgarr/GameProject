@@ -5,7 +5,6 @@ using UnityEngine;
 public class AddItemPlAYER : MonoBehaviour
 {
      public  GameObject inventory;
-     int i = 0;
 
     public ItemInventory Додається_до
     {

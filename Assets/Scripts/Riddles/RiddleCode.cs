@@ -11,7 +11,6 @@ public class RiddleCode : MonoBehaviour
     public Sprite Cell5;
     public Sprite Cell7;
     string text1;
-    string text2="7543";
 
     public void Code(string text)
     {

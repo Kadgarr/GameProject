@@ -10,7 +10,6 @@ public class AccelerContr : MonoBehaviour
     
     private bool IsGround = false;
     private float ver;
-    bool CheckAnim = false;
 
 
     

@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private bool IsGround = false;
     private float ver;
     private bool check14lvl = false;
-    bool CheckAnim = false;
 
     private Animator Anim;
     private Rigidbody2D Rbody;
