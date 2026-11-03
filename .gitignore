@@ -116,4 +116,7 @@ The Forest HDRP/.vsconfig
 # Android signing keys (never commit)
 *.keystore
 *.jks
+
+# IDE / generated solution files
+.vscode/
 *.slnx
