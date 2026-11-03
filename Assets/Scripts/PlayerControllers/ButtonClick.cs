@@ -1,27 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Кнопка движения влево/вправо для мобильного управления.
+/// Ссылка на игрока задаётся в инспекторе (если не задана — ищется один раз в Awake).
+/// </summary>
 public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public enum MoveDirection
+    {
+        Left = -1,
+        Right = 1
+    }
+
+    [SerializeField] private PlayerController player;
+    [SerializeField] private MoveDirection direction = MoveDirection.Right;
+
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = FindFirstObjectByType<PlayerController>();
+        }
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(gameObject.name== "ButtonLeft")
+        if (player != null)
         {
-            GameObject.Find("Sprite").GetComponent<PlayerController>().horizontalspeed = -1;
-            
-        }
-        else
-        if(gameObject.name == "ButtonRight")
-        {
-            GameObject.Find("Sprite").GetComponent<PlayerController>().horizontalspeed = 1;
+            player.horizontalspeed = (int)direction;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        GameObject.Find("Sprite").GetComponent<PlayerController>().horizontalspeed = 0;
+        if (player != null)
+        {
+            player.horizontalspeed = 0;
+        }
     }
-
 }
