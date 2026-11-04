@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Смерть игрока: «мёртвый» спрайт и отключение управления. О смерти сообщает событием Died —
-/// перезапуск уровня делает LevelFlow. Если LevelFlow в сцене нет, уровень перезапускается сам.
+/// Смерть игрока: «мёртвый» спрайт и событие Died. На событие реагируют PlayerMotor (перестаёт
+/// слушать управление) и LevelFlow (перезапускает уровень). Если LevelFlow в сцене нет,
+/// уровень перезапускается сам.
 /// </summary>
 public class DeadPlayer : MonoBehaviour
 {
     public Sprite SpriteDead;
-
-    [Tooltip("Необязательно: кнопки управления, которые выключаются после смерти.")]
-    public GameObject ButRight;
-    public GameObject ButLeft;
-    public GameObject ButUp;
 
     private bool _isDead;
 
@@ -56,27 +51,6 @@ public class DeadPlayer : MonoBehaviour
         if (spriteRenderer != null && SpriteDead != null)
         {
             spriteRenderer.sprite = SpriteDead;
-        }
-
-        if (ButUp != null)
-        {
-            var jumpTrigger = ButUp.GetComponent<EventTrigger>();
-            if (jumpTrigger != null)
-            {
-                jumpTrigger.enabled = false;
-            }
-        }
-
-        var accelerometerControl = GetComponent<AccelerContr>();
-        if (accelerometerControl != null)
-        {
-            accelerometerControl.enabled = false;
-        }
-
-        var playerController = GetComponent<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.enabled = false;
         }
     }
 

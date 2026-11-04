@@ -46,7 +46,7 @@ public class EscapeMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Включает/выключает обработку нажатий на кнопках управления (Button, EventTrigger, ButtonClick и т.п.).
+    /// Включает/выключает обработку нажатий на кнопках управления (Button, ControlButton, EventTrigger и т.п.).
     /// Пустые ссылки пропускаются — на некоторых уровнях часть кнопок не задана.
     /// </summary>
     private void SetControlsEnabled(bool enabled)
