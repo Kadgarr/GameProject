@@ -1,25 +1,21 @@
 ﻿using DarknessInside.Core.Levels;
 using DarknessInside.Core.Save;
+using DarknessInside.UI.Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Главное меню: переключение экранов и запуск уровней. Прогресс берётся из SaveService,
-/// список уровней — из LevelDatabase. Кнопки уровней вызывают LoadLevel(номер) — номер задан в инспекторе.
+/// Главное меню: запуск уровней и команды кнопок. Переключение экранов делегируется MenuNavigator.
+/// Прогресс берётся из SaveService, список уровней — из LevelDatabase.
+/// Кнопки уровней вызывают LoadLevel(номер) — номер задан в инспекторе.
 /// </summary>
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private LevelDatabase levels;
+    [SerializeField] private MenuNavigator navigator;
 
     public GameObject butNewGame;
     public GameObject butContinueGame;
-
-    public GameObject canvLevels;
-    public GameObject canImage1;
-    public GameObject canImage2;
-    public GameObject mainCanv;
-    public GameObject optionsCanv;
-    public GameObject InfoCanv;
 
     public GameObject soundClick;
 
@@ -64,11 +60,35 @@ public class StartMenu : MonoBehaviour
 
     public void Options()
     {
+        Open(MenuScreenId.Options);
+    }
+
+    public void LevelScene()
+    {
+        Open(MenuScreenId.Levels);
+    }
+
+    public void ExitToMainMenu()
+    {
+        Open(MenuScreenId.Main);
+    }
+
+    public void ShowUpInfo()
+    {
         PlayClick();
-        SetActive(optionsCanv, true);
-        SetActive(canImage1, false);
-        SetActive(canImage2, false);
-        gameObject.SetActive(false);
+        if (navigator != null)
+        {
+            navigator.SetInfoOpen(true);
+        }
+    }
+
+    public void ShowDownInfo()
+    {
+        PlayClick();
+        if (navigator != null)
+        {
+            navigator.SetInfoOpen(false);
+        }
     }
 
     public void ExitGame()
@@ -76,34 +96,13 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void LevelScene()
+    private void Open(MenuScreenId id)
     {
         PlayClick();
-        SetActive(canvLevels, true);
-        SetActive(canImage1, false);
-        SetActive(canImage2, false);
-        gameObject.SetActive(false);
-    }
-
-    public void ExitToMainMenu()
-    {
-        PlayClick();
-        SetActive(canImage1, true);
-        SetActive(canImage2, true);
-        SetActive(mainCanv, true);
-        gameObject.SetActive(false);
-    }
-
-    public void ShowUpInfo()
-    {
-        SetActive(InfoCanv, true);
-        PlayClick();
-    }
-
-    public void ShowDownInfo()
-    {
-        SetActive(InfoCanv, false);
-        PlayClick();
+        if (navigator != null)
+        {
+            navigator.Show(id);
+        }
     }
 
     private void PlayClick()

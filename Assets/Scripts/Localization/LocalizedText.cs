@@ -1,18 +1,18 @@
 ﻿using DarknessInside.Core.Localization;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 /// <summary>Текст UI по ключу локализации. Обновляется при смене языка через событие.</summary>
-[RequireComponent(typeof(Text))]
+[RequireComponent(typeof(TMP_Text))]
 public class LocalizedText : MonoBehaviour
 {
     [SerializeField] private string key;
 
-    private Text _text;
+    private TMP_Text _text;
 
     private void Awake()
     {
-        _text = GetComponent<Text>();
+        _text = GetComponent<TMP_Text>();
     }
 
     private void OnEnable()

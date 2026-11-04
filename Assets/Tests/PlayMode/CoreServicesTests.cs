@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
+using TMPro;
 
 namespace DarknessInside.Tests
 {
@@ -92,7 +92,7 @@ namespace DarknessInside.Tests
         public IEnumerator LanguageChange_UpdatesTexts()
         {
             yield return Load("Level_1");
-            Text text = Object.FindFirstObjectByType<LocalizedText>().GetComponent<Text>();
+            TMP_Text text = Object.FindFirstObjectByType<LocalizedText>().GetComponent<TMP_Text>();
 
             LocalizationService.Instance.SetLanguage("en_US");
             string english = text.text;

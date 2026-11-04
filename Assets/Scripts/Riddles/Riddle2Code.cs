@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Загадка уровня 12: две группы кнопок, каждая прибавляет или убирает своё число к сумме группы.
@@ -21,15 +21,15 @@ public class Riddle2Code : MonoBehaviour
     private bool _activeInGroup;
     private DoorOpen _door;
     private SummRiddle2 _sum;
-    private Text _cell1;
-    private Text _cell2;
-    private Text _cell3;
+    private TMP_Text _cell1;
+    private TMP_Text _cell2;
+    private TMP_Text _cell3;
 
     private void Awake()
     {
-        _cell1 = cell1 != null ? cell1.GetComponent<Text>() : null;
-        _cell2 = cell2 != null ? cell2.GetComponent<Text>() : null;
-        _cell3 = cell3 != null ? cell3.GetComponent<Text>() : null;
+        _cell1 = cell1 != null ? cell1.GetComponent<TMP_Text>() : null;
+        _cell2 = cell2 != null ? cell2.GetComponent<TMP_Text>() : null;
+        _cell3 = cell3 != null ? cell3.GetComponent<TMP_Text>() : null;
         _door = doorObj != null ? doorObj.GetComponent<DoorOpen>() : null;
         _sum = objCanv != null ? objCanv.GetComponent<SummRiddle2>() : null;
     }
@@ -67,7 +67,7 @@ public class Riddle2Code : MonoBehaviour
         }
     }
 
-    private static void SetText(Text text, int value)
+    private static void SetText(TMP_Text text, int value)
     {
         if (text != null)
         {

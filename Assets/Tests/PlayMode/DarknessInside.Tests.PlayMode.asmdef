@@ -3,6 +3,7 @@
     "rootNamespace": "DarknessInside.Tests",
     "references": [
         "DarknessInside.Runtime",
+        "Unity.TextMeshPro",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
