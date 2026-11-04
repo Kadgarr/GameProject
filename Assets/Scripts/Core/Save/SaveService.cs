@@ -46,10 +46,22 @@ namespace DarknessInside.Core.Save
 
         public string Language => _data.language;
 
-        /// <summary>Подменить сервис (тесты, Core-сцена).</summary>
+        /// <summary>
+        /// Подменить сервис (тесты, удаление сохранения из меню редактора). null — заново прочитать файл.
+        /// Подписчики старого сервиса переходят к новому, чтобы долгоживущие объекты (Core) не потеряли события.
+        /// </summary>
         public static void SetInstance(SaveService service)
         {
-            _instance = service;
+            SaveService next = service ?? new SaveService(new JsonFileSaveStorage(JsonFileSaveStorage.DefaultPath));
+            if (_instance != null && _instance != next)
+            {
+                next.ProgressChanged += _instance.ProgressChanged;
+                next.MusicChanged += _instance.MusicChanged;
+                next.SoundChanged += _instance.SoundChanged;
+                next.LanguageChanged += _instance.LanguageChanged;
+            }
+
+            _instance = next;
         }
 
         public void MarkLevelCompleted(int levelNumber)

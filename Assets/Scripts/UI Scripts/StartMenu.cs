@@ -9,8 +9,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StartMenu : MonoBehaviour
 {
-    private const string MusicTag = "Music";
-
     [SerializeField] private LevelDatabase levels;
 
     public GameObject butNewGame;
@@ -34,13 +32,6 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
-        // Музыка уровней живёт между сценами; в меню своя. Уйдёт с AudioService (шаг 3.4).
-        GameObject[] music = GameObject.FindGameObjectsWithTag(MusicTag);
-        if (music.Length > 0)
-        {
-            Destroy(music[0]);
-        }
-
         bool hasProgress = SaveService.Instance.HasProgress;
         SetActive(butNewGame, !hasProgress);
         SetActive(butContinueGame, hasProgress);

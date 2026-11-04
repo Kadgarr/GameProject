@@ -1,51 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DarknessInside.Core.Localization;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>Текст UI по ключу локализации. Обновляется при смене языка через событие.</summary>
+[RequireComponent(typeof(Text))]
 public class LocalizedText : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField] private string key;
 
-    private string key;
-    private LocalizationManager localizationManager;
-    private Text text;
+    private Text _text;
 
-    void Awake()
-     {
-         if (localizationManager == null)
-         {
-             localizationManager = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
-         }
-         if (text == null)
-         {
-             text = GetComponent<Text>();
-         }
-         localizationManager.OnLanguageChanged += UpdateText;
-     }
+    private void Awake()
+    {
+        _text = GetComponent<Text>();
+    }
 
-     void Start()
-     {
-         UpdateText();
-     }
+    private void OnEnable()
+    {
+        Apply();
+        LocalizationService.LanguageChanged += Apply;
+    }
 
-     private void OnDestroy()
-     {
-         localizationManager.OnLanguageChanged -= UpdateText;
-     }
+    private void OnDisable()
+    {
+        LocalizationService.LanguageChanged -= Apply;
+    }
 
-     private void UpdateText()
-     {
-         if (gameObject == null) return;
-
-         if (localizationManager == null)
-         {
-             localizationManager = GameObject.FindGameObjectWithTag("LocalizationManager").GetComponent<LocalizationManager>();
-         }
-         if (text == null)
-         {
-             text = GetComponent<Text>();
-         }
-         text.text = localizationManager.GetLocalizedValue(key);
-     }
+    private void Apply()
+    {
+        LocalizationService service = LocalizationService.Instance;
+        if (service != null && _text != null)
+        {
+            _text.text = service.Get(key);
+        }
+    }
 }
