@@ -1,115 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DarknessInside.Core.Save;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using Assets.Scripts.Audio;
 
+/// <summary>
+/// Применяет настройки «музыка/звук» из SaveService к музыке на этом объекте
+/// и к источникам звуковых эффектов сцены. Реагирует на изменения через события.
+/// Временное решение до AudioService в Core-сцене (шаг 3.4).
+/// </summary>
 public class CheckAudio : MonoBehaviour
 {
-    private string path;
-    private string soundOnOff;
-    private string textFile;
-
-    public bool check1;
-    public bool check2;
-
     public GameObject soundObj_1;
     public GameObject soundObj_2;
-    AudioSource sound1;
-    AudioSource sound2;
 
+    private AudioSource _music;
+    private AudioSource _sfx1;
+    private AudioSource _sfx2;
 
-    public AudioActivate Перевіряє
+    private void Awake()
     {
-        get => default;
-        set
+        _music = GetComponent<AudioSource>();
+        _sfx1 = soundObj_1 != null ? soundObj_1.GetComponent<AudioSource>() : null;
+        _sfx2 = soundObj_2 != null ? soundObj_2.GetComponent<AudioSource>() : null;
+    }
+
+    private void OnEnable()
+    {
+        SaveService save = SaveService.Instance;
+        ApplyMusic(save.MusicOn);
+        ApplySound(save.SoundOn);
+        save.MusicChanged += ApplyMusic;
+        save.SoundChanged += ApplySound;
+    }
+
+    private void OnDisable()
+    {
+        SaveService.Instance.MusicChanged -= ApplyMusic;
+        SaveService.Instance.SoundChanged -= ApplySound;
+    }
+
+    private void ApplyMusic(bool on)
+    {
+        if (_music == null)
         {
+            return;
+        }
+
+        if (on && !_music.isPlaying)
+        {
+            _music.Play();
+        }
+        else if (!on)
+        {
+            _music.Stop();
         }
     }
 
-    private void Start()
+    private void ApplySound(bool on)
     {
-        sound1 = soundObj_1.GetComponent<AudioSource>();
-        try
+        if (_sfx1 != null)
         {
-            sound2 = soundObj_2.GetComponent<AudioSource>();
-        }
-        catch 
-        {
-
+            _sfx1.enabled = on;
         }
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        path = Path.Combine(Application.persistentDataPath, "options.json");
-#else
-        path = Path.Combine(Application.dataPath, "options.json");
-#endif
-       
-        if (!File.Exists(path))
+        if (_sfx2 != null)
         {
-            OptionMusSound options = new OptionMusSound();
-            options.musicOp = true;
-            options.soundOp = true;
-            string soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-
+            _sfx2.enabled = on;
         }
-
-
-        if (File.Exists(path))
-        {
-            soundOnOff = File.ReadAllText(path);
-            var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-            
-            if (options.musicOp == false)
-            {
-                GetComponent<AudioSource>().Stop();
-            }
-
-            if (options.musicOp == true)
-            {
-                GetComponent<AudioSource>().Play();
-            }
-
-        }
-        
-
-        if (File.Exists(path))
-        {
-
-            soundOnOff = File.ReadAllText(path);
-            var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-
-            if (options.soundOp == false)
-                {
-                    sound1.enabled = false;
-                    try
-                    {
-                        sound2.enabled = false;
-                    }
-                    catch
-                    {
-
-                    }
-                }
-
-                if (options.soundOp == true)
-                {
-                    sound1.enabled = true;
-                    
-                    try
-                    {
-                        sound2.enabled = true;
-                    }
-                    catch
-                    {
-
-                    }
-                }
-
-            
-        }
-        
     }
 }

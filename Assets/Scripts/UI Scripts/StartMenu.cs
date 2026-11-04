@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+﻿using DarknessInside.Core.Levels;
+using DarknessInside.Core.Save;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-[System.Serializable]
+/// <summary>
+/// Главное меню: переключение экранов и запуск уровней. Прогресс берётся из SaveService,
+/// список уровней — из LevelDatabase. Кнопки уровней вызывают LoadLevel(номер) — номер задан в инспекторе.
+/// </summary>
 public class StartMenu : MonoBehaviour
 {
-    List<IndexScene> ListCompletedScene = new List<IndexScene>();
-    private string path;
+    private const string MusicTag = "Music";
+
+    [SerializeField] private LevelDatabase levels;
 
     public GameObject butNewGame;
     public GameObject butContinueGame;
@@ -23,195 +24,110 @@ public class StartMenu : MonoBehaviour
     public GameObject InfoCanv;
 
     public GameObject soundClick;
-    AudioSource Click;
-    int indexForContinue;
 
-   
+    private AudioSource _click;
+
+    private void Awake()
+    {
+        _click = soundClick != null ? soundClick.GetComponent<AudioSource>() : null;
+    }
 
     private void Start()
     {
-        Click = soundClick.GetComponent<AudioSource>();
-#if       UNITY_ANDROID && !UNITY_EDITOR
-       path = Path.Combine(Application.persistentDataPath, "level_completed");
-#else
-        path = Path.Combine(Application.dataPath, "level_completed");
-#endif
-        BinaryFormatter binformat = new BinaryFormatter();
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
-        if (objs.Length > 0)
+        // Музыка уровней живёт между сценами; в меню своя. Уйдёт с AudioService (шаг 3.4).
+        GameObject[] music = GameObject.FindGameObjectsWithTag(MusicTag);
+        if (music.Length > 0)
         {
-            Destroy(objs[0]);
+            Destroy(music[0]);
         }
-        try
-        {
-            using (FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                ListCompletedScene = (List<IndexScene>)binformat.Deserialize(fstream);
-            }
-        }
-        catch
-        {
-            Debug.Log("Пройденный уровней нет!!");
-        }
-        foreach (IndexScene b in ListCompletedScene)
-        {
-            if (b.Index >= 1)
-            {
-                butNewGame.gameObject.SetActive(false);
-                butContinueGame.gameObject.SetActive(true);
-                indexForContinue = b.Index;
-            }
-            
-        }
+
+        bool hasProgress = SaveService.Instance.HasProgress;
+        SetActive(butNewGame, !hasProgress);
+        SetActive(butContinueGame, hasProgress);
     }
 
     public void Play()
     {
-        SceneManager.LoadScene("Level_1");
-        GetComponentInChildren<AudioSource>().Play();
-        return;
+        LoadLevel(1);
     }
 
     public void Continue()
     {
-        Click.Play();
-        SceneManager.LoadScene(indexForContinue + 1);
-        
+        PlayClick();
+        SceneManager.LoadScene(levels.GetNextScene(SaveService.Instance.LastCompletedLevel));
+    }
+
+    /// <summary>Запуск уровня по номеру (1..N). Вызывается кнопками меню.</summary>
+    public void LoadLevel(int levelNumber)
+    {
+        PlayClick();
+        string scene = levels != null ? levels.GetSceneName(levelNumber) : null;
+        if (string.IsNullOrEmpty(scene))
+        {
+            Debug.LogError("StartMenu: no level " + levelNumber + " in LevelDatabase.", this);
+            return;
+        }
+
+        SceneManager.LoadScene(scene);
     }
 
     public void Options()
     {
-        Click.Play();
-        optionsCanv.gameObject.SetActive(true);
-        canImage1.gameObject.SetActive(false);
-        canImage2.gameObject.SetActive(false);
-        this.gameObject.SetActive(false);
+        PlayClick();
+        SetActive(optionsCanv, true);
+        SetActive(canImage1, false);
+        SetActive(canImage2, false);
+        gameObject.SetActive(false);
     }
+
     public void ExitGame()
     {
         Application.Quit();
-        return;
     }
 
     public void LevelScene()
     {
-        Click.Play();
-        
-         canvLevels.gameObject.SetActive(true);
-         canImage1.gameObject.SetActive(false);
-         canImage2.gameObject.SetActive(false);
-         this.gameObject.SetActive(false);
+        PlayClick();
+        SetActive(canvLevels, true);
+        SetActive(canImage1, false);
+        SetActive(canImage2, false);
+        gameObject.SetActive(false);
     }
 
     public void ExitToMainMenu()
     {
-        Click.Play();
-
-        canImage1.gameObject.SetActive(true);
-        canImage2.gameObject.SetActive(true);
-        mainCanv.gameObject.SetActive(true);
+        PlayClick();
+        SetActive(canImage1, true);
+        SetActive(canImage2, true);
+        SetActive(mainCanv, true);
         gameObject.SetActive(false);
-        //SceneManager.UnloadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ShowUpInfo()
     {
-        InfoCanv.gameObject.SetActive(true);
-        Click.Play();
+        SetActive(InfoCanv, true);
+        PlayClick();
     }
 
     public void ShowDownInfo()
     {
-        InfoCanv.gameObject.SetActive(false);
-        Click.Play();
-    }
-    public void LoadLevel1()
-    {
-        SceneManager.LoadScene("Level_1");
-        Click.Play();
+        SetActive(InfoCanv, false);
+        PlayClick();
     }
 
-    public void LoadLevel2()
+    private void PlayClick()
     {
-        SceneManager.LoadScene("Level_2");
-        Click.Play();
+        if (_click != null && _click.isActiveAndEnabled)
+        {
+            _click.Play();
+        }
     }
 
-    public void LoadLevel3()
+    private static void SetActive(GameObject target, bool active)
     {
-        SceneManager.LoadScene("Level_3");
-        Click.Play();
-    }
-
-    public void LoadLevel4()
-    {
-        SceneManager.LoadScene("Level_4");
-        Click.Play();
-    }
-
-    public void LoadLevel5()
-    {
-        SceneManager.LoadScene("Level_5");
-        Click.Play();
-    }
-
-    public void LoadLevel6()
-    {
-        SceneManager.LoadScene("Level_6");
-        Click.Play();
-    }
-
-    public void LoadLevel7()
-    {
-        SceneManager.LoadScene("Level_7");
-        Click.Play();
-    }
-
-    public void LoadLevel8()
-    {
-        SceneManager.LoadScene("Level_8");
-        Click.Play();
-    }
-
-    public void LoadLevel9()
-    {
-        SceneManager.LoadScene("Level_9");
-        Click.Play();
-    }
-
-    public void LoadLevel10()
-    {
-        SceneManager.LoadScene("Level_10");
-        Click.Play();
-    }
-
-    public void LoadLevel11()
-    {
-        SceneManager.LoadScene("Level_11");
-        Click.Play();
-    }
-
-    public void LoadLevel12()
-    {
-        SceneManager.LoadScene("Level_12");
-        Click.Play();
-    }
-
-    public void LoadLevel13()
-    {
-        SceneManager.LoadScene("Level_13");
-        Click.Play();
-    }
-
-    public void LoadLevel14()
-    {
-        SceneManager.LoadScene("Level_14");
-        Click.Play();
-    }
-
-    public void LoadLevel15()
-    {
-        SceneManager.LoadScene("Level_15");
-        Click.Play();
+        if (target != null)
+        {
+            target.SetActive(active);
+        }
     }
 }

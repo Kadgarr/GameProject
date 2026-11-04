@@ -31,7 +31,7 @@ public class Scale : MonoBehaviour
         var die = GetComponent<Die>();
         if (die != null)
         {
-            die.KillPlayer(deadPlayer);
+            die.Kill(deadPlayer);
         }
         else if (deadPlayer != null)
         {

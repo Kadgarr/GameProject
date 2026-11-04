@@ -7,13 +7,6 @@ public class TextOpenDoor : MonoBehaviour
     DoorOpen door;
     public GameObject doorClosed;
 
-    public DoorOpen Відкриває
-    {
-        get => default;
-        set
-        {
-        }
-    }
 
     private void Start()
     {
@@ -22,7 +15,7 @@ public class TextOpenDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             door.OpenedDoor(true);
         }

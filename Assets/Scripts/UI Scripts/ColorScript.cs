@@ -12,13 +12,6 @@ public class ColorScript : MonoBehaviour
 
     public float fillingCount = 0.0001f;
 
-    public ColoredElement Фарбує
-    {
-        get => default;
-        set
-        {
-        }
-    }
 
     private void Start()
     {

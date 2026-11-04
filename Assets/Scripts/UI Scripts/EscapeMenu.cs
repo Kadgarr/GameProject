@@ -16,21 +16,7 @@ public class EscapeMenu : MonoBehaviour
 
     public GameObject hintCanv;
 
-    public PlayerController Активує
-    {
-        get => default;
-        set
-        {
-        }
-    }
 
-    public StartMenu Повертає_да
-    {
-        get => default;
-        set
-        {
-        }
-    }
 
     public void Pause()
     {

@@ -25,7 +25,7 @@ public class CameraController1 : MonoBehaviour
       }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             cam.transform.position = new Vector3(transform.position.x, posY, transform.position.z );
         }

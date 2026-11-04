@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4cfb16ea77f17478d2b7856e122312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: {fileID: 11400000, guid: 33a672ccf5cc6fa4e9895af4a52f7dab, type: 2}
   butNewGame: {fileID: 666071353}
   butContinueGame: {fileID: 1984045275}
   canvLevels: {fileID: 0}
@@ -188,21 +189,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf31e8ff8976114b8610ca551b3a807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button1: {fileID: 224016904}
-  button2: {fileID: 1192171738}
-  button3: {fileID: 1630648706}
-  button4: {fileID: 341010910}
-  button5: {fileID: 765892028}
-  button6: {fileID: 2107389236}
-  button7: {fileID: 1878010507}
-  button8: {fileID: 1650972972}
-  button9: {fileID: 1869711773}
-  button10: {fileID: 1859477408}
-  button11: {fileID: 1311912649}
-  button12: {fileID: 1481047246}
-  button13: {fileID: 1480277268}
-  button14: {fileID: 290604633}
-  button15: {fileID: 855304961}
+  levelButtons:
+  - {fileID: 224016904}
+  - {fileID: 1192171738}
+  - {fileID: 1630648706}
+  - {fileID: 341010910}
+  - {fileID: 765892028}
+  - {fileID: 2107389236}
+  - {fileID: 1878010507}
+  - {fileID: 1650972972}
+  - {fileID: 1869711773}
+  - {fileID: 1859477408}
+  - {fileID: 1311912649}
+  - {fileID: 1481047246}
+  - {fileID: 1480277268}
+  - {fileID: 290604633}
+  - {fileID: 855304961}
   developerSettings: {fileID: 11400000, guid: 29fff04d879195f43a51fe890ebe2683, type: 2}
 --- !u!114 &43082397
 MonoBehaviour:
@@ -829,8 +831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879bf32cd6082194aac4dd70cc61eb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  check1: 0
-  check2: 0
   soundObj_1: {fileID: 1626069594}
   soundObj_2: {fileID: 0}
 --- !u!1 &224016903
@@ -898,13 +898,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel1
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1184,6 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4cfb16ea77f17478d2b7856e122312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: {fileID: 11400000, guid: 33a672ccf5cc6fa4e9895af4a52f7dab, type: 2}
   butNewGame: {fileID: 666071353}
   butContinueGame: {fileID: 1984045275}
   canvLevels: {fileID: 43082393}
@@ -1246,6 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4cfb16ea77f17478d2b7856e122312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: {fileID: 11400000, guid: 33a672ccf5cc6fa4e9895af4a52f7dab, type: 2}
   butNewGame: {fileID: 0}
   butContinueGame: {fileID: 0}
   canvLevels: {fileID: 0}
@@ -1553,13 +1555,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel14
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 14
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1769,13 +1771,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel4
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2977,13 +2979,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 263977320}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel1
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3366,13 +3368,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel5
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4227,13 +4229,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel15
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 15
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5480,13 +5482,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel2
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6378,13 +6380,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel11
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7091,13 +7093,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel13
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 13
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7322,13 +7324,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel12
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7483,6 +7485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4cfb16ea77f17478d2b7856e122312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: {fileID: 11400000, guid: 33a672ccf5cc6fa4e9895af4a52f7dab, type: 2}
   butNewGame: {fileID: 666071353}
   butContinueGame: {fileID: 1984045275}
   canvLevels: {fileID: 43082393}
@@ -8037,13 +8040,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel3
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8385,13 +8388,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel8
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8857,13 +8860,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel10
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9088,13 +9091,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel9
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9202,13 +9205,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel7
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9863,13 +9866,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 43082394}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadLevel6
-        m_Mode: 1
+        m_TargetAssemblyTypeName: StartMenu, DarknessInside.Runtime
+        m_MethodName: LoadLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

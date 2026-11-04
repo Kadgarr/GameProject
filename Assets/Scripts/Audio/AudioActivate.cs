@@ -1,156 +1,112 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DarknessInside.Core.Save;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using UnityEngine.UI;
-using System.Linq;
-using Assets.Scripts.Audio;
 
+/// <summary>
+/// Кнопки «музыка» и «звук» в настройках меню. Состояние хранит SaveService,
+/// иконки и источники звука обновляются по его событиям.
+/// </summary>
 public class AudioActivate : MonoBehaviour
 {
-   
-    private string path;
-
-
-    private string soundOnOff="";
-
     public GameObject audioBackSource;
-
     public GameObject audioClick;
-    AudioSource Click;
-
 
     public GameObject Button;
     public Sprite MelodyOn;
     public Sprite MelodyOff;
-    Image butSwitch;
 
     public GameObject Button2;
     public Sprite DynamicOn;
     public Sprite DynamicOff;
-    Image butSwitch2;
 
-    AudioSource background;
+    private AudioSource _background;
+    private AudioSource _click;
+    private Image _musicIcon;
+    private Image _soundIcon;
 
-   
-    private void Start()
+    private void Awake()
     {
-        OptionMusSound options = new OptionMusSound();
-        BinaryFormatter binformat = new BinaryFormatter();
-#if UNITY_ANDROID && !UNITY_EDITOR
-        path = Path.Combine(Application.persistentDataPath, "options.json");
-#else
-        path = Path.Combine(Application.dataPath, "options.json");
-#endif
-        if (!File.Exists(path))
-        {
-            options.musicOp = true;
-            options.musicOp = true;
-           string soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-        }  
+        _background = audioBackSource != null ? audioBackSource.GetComponent<AudioSource>() : null;
+        _click = audioClick != null ? audioClick.GetComponent<AudioSource>() : null;
+        _musicIcon = Button != null ? Button.GetComponent<Image>() : null;
+        _soundIcon = Button2 != null ? Button2.GetComponent<Image>() : null;
+    }
 
-        butSwitch = Button.GetComponent<Image>();
-        butSwitch2 = Button2.GetComponent<Image>();
-        background = audioBackSource.GetComponent<AudioSource>();
-        Click = audioClick.GetComponent<AudioSource>();
+    private void OnEnable()
+    {
+        SaveService save = SaveService.Instance;
+        SetMusicIcon(save.MusicOn);
+        SetSoundIcon(save.SoundOn);
+        save.MusicChanged += OnMusicChanged;
+        save.SoundChanged += OnSoundChanged;
+    }
 
-        if (File.Exists(path))
-        {
-           soundOnOff= File.ReadAllText(path);
-            options =JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-
-
-            if (options.musicOp==false)
-            {
-                butSwitch.sprite = MelodyOff;
-                background.Stop();
-            }
-                
-            if (options.musicOp == true)
-            {
-                butSwitch.sprite = MelodyOn;
-            }
-
-           
-
-
-            if (options.soundOp == false)
-            {
-                butSwitch2.sprite = DynamicOff;
-            }
-
-            if (options.soundOp == true)
-            {
-                butSwitch2.sprite = DynamicOn;
-            }
-        }
-
-        
+    private void OnDisable()
+    {
+        SaveService.Instance.MusicChanged -= OnMusicChanged;
+        SaveService.Instance.SoundChanged -= OnSoundChanged;
     }
 
     public void ClickOnOfAudio()
     {
-        
-        Click.Play();
-        soundOnOff = File.ReadAllText(path);
-        var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-        
-
-        if (options.musicOp==false)
-        {
-            options.musicOp = true;
-            soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-            butSwitch.sprite = MelodyOn;
-            background.Play();
-        }
-        else
-        if (options.musicOp == true)
-        {
-           
-            options.musicOp = false;
-            soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-            butSwitch.sprite = MelodyOff;
-            background.Stop();
-        }
-        soundOnOff = "";
+        PlayClick();
+        SaveService.Instance.SetMusicOn(!SaveService.Instance.MusicOn);
     }
 
     public void ClickSound()
     {
-        
-        Click.Play();
-        soundOnOff = File.ReadAllText(path);
-        var options = JsonUtility.FromJson<OptionMusSound>(soundOnOff);
-       
+        SaveService.Instance.SetSoundOn(!SaveService.Instance.SoundOn);
+        PlayClick();
+    }
 
-        if (options.soundOp == false)
+    private void OnMusicChanged(bool on)
+    {
+        SetMusicIcon(on);
+        if (_background == null)
         {
-            options.soundOp = true;
-            soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-            Click.enabled = true;
-            Click.Play();
-            butSwitch2.sprite = DynamicOn;
-
+            return;
         }
 
-        else
-
-        if (options.soundOp==true)
+        if (on && !_background.isPlaying)
         {
-            options.soundOp = false;
-            soundOnOff = JsonUtility.ToJson(options);
-            File.WriteAllText(path, soundOnOff);
-            Click.enabled = false;
-            butSwitch2.sprite = DynamicOff;
-
+            _background.Play();
         }
+        else if (!on)
+        {
+            _background.Stop();
+        }
+    }
 
-        soundOnOff = "";
+    private void OnSoundChanged(bool on)
+    {
+        SetSoundIcon(on);
+        if (_click != null)
+        {
+            _click.enabled = on;
+        }
+    }
 
+    private void SetMusicIcon(bool on)
+    {
+        if (_musicIcon != null)
+        {
+            _musicIcon.sprite = on ? MelodyOn : MelodyOff;
+        }
+    }
+
+    private void SetSoundIcon(bool on)
+    {
+        if (_soundIcon != null)
+        {
+            _soundIcon.sprite = on ? DynamicOn : DynamicOff;
+        }
+    }
+
+    private void PlayClick()
+    {
+        if (_click != null && _click.isActiveAndEnabled)
+        {
+            _click.Play();
+        }
     }
 }

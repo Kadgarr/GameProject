@@ -7,13 +7,6 @@ public class FallPlatform : MonoBehaviour
     private bool Check=false;
     public float timer;
 
-    public FallenDie Вмирає_від
-    {
-        get => default;
-        set
-        {
-        }
-    }
 
     private void Update()
     {
@@ -36,7 +29,7 @@ public class FallPlatform : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             Check = true;
         }

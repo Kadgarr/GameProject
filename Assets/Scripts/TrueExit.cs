@@ -8,7 +8,7 @@ public class TrueExit : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             TrueCollideer.GetComponentInChildren<BoxCollider2D>().enabled = false;
         }

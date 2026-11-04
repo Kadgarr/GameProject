@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DarknessInside.Gameplay.Hazards;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class FalseScriptArea : MonoBehaviour
+/// <summary>«Ложный» проход (уровень 8): игрок, вошедший в зону, погибает и уровень начинается заново.</summary>
+public class FalseScriptArea : Hazard
 {
-    // Start is called before the first frame update
-    public void OnTriggerEnter2D(Collider2D Other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        TryKill(other.gameObject);
     }
 }

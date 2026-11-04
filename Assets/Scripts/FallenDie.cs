@@ -1,24 +1,17 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using DarknessInside.Gameplay.Hazards;
+using UnityEngine;
 
 /// <summary>
 /// Падающая ловушка: начинает падать, когда игрок входит в триггер; убивает игрока при ударе,
 /// после приземления на Ground становится безопасной.
 /// </summary>
-public class FallenDie : MonoBehaviour
+public class FallenDie : Hazard
 {
-    private const string PlayerTag = "Player";
     private const string GroundTag = "Ground";
     private const string PlatformMoveTag = "PlatformMove";
     private const string DieSpaceTag = "DieSpace";
 
     public float GravityScale;
-
-    [Tooltip("Через сколько секунд после смерти перезапустится уровень.")]
-    public float timer;
-
-    [Tooltip("Необязательно: игрок определяется по столкновению автоматически.")]
-    public GameObject Player;
 
     private bool _landed;
     private BoxCollider2D[] _childColliders;
@@ -34,9 +27,9 @@ public class FallenDie : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        if (!_landed && other.CompareTag(PlayerTag))
+        if (!_landed)
         {
-            KillPlayer(other);
+            TryKill(other);
         }
 
         if (other.CompareTag(GroundTag))
@@ -44,6 +37,7 @@ public class FallenDie : MonoBehaviour
             _landed = true;
             for (int i = 0; i < _childColliders.Length; i++)
             {
+                // Шипы-дети могут быть уже уничтожены (упали на движущуюся платформу).
                 if (_childColliders[i] != null)
                 {
                     _childColliders[i].enabled = false;
@@ -73,24 +67,6 @@ public class FallenDie : MonoBehaviour
         if (other.CompareTag(DieSpaceTag))
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void KillPlayer(GameObject playerObject)
-    {
-        var deadPlayer = playerObject.GetComponentInParent<DeadPlayer>();
-        if (deadPlayer == null && Player != null)
-        {
-            deadPlayer = Player.GetComponentInChildren<DeadPlayer>();
-        }
-
-        if (deadPlayer != null)
-        {
-            deadPlayer.Kill(timer);
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

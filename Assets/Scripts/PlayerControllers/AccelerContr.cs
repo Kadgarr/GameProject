@@ -147,11 +147,4 @@ public class AccelerContr : MonoBehaviour
         }
     }
 
-    public PlayerController Заміняє
-    {
-        get => default;
-        set
-        {
-        }
-    }
 }

@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Смерть игрока: «мёртвый» спрайт, отключение управления и перезапуск уровня.
-/// Перезапуск запускается на самом игроке, поэтому срабатывает, даже если ловушка,
-/// которая убила игрока, после этого исчезла.
+/// Смерть игрока: «мёртвый» спрайт и отключение управления. О смерти сообщает событием Died —
+/// перезапуск уровня делает LevelFlow. Если LevelFlow в сцене нет, уровень перезапускается сам.
 /// </summary>
 public class DeadPlayer : MonoBehaviour
 {
@@ -19,11 +19,12 @@ public class DeadPlayer : MonoBehaviour
 
     private bool _isDead;
 
+    /// <summary>Игрок погиб. Аргумент — через сколько секунд перезапустить уровень.</summary>
+    public event Action<float> Died;
+
     public bool IsDead => _isDead;
 
-    /// <summary>Убить игрока и перезапустить уровень через reloadDelay секунд.</summary>
-    /// <param name="sceneBuildIndex">Какую сцену загрузить; меньше 0 — текущую.</param>
-    public void Kill(float reloadDelay, int sceneBuildIndex = -1)
+    public void Kill(float restartDelay)
     {
         if (_isDead)
         {
@@ -33,8 +34,14 @@ public class DeadPlayer : MonoBehaviour
         _isDead = true;
         ShowDeath();
 
-        int scene = sceneBuildIndex >= 0 ? sceneBuildIndex : SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(ReloadAfter(reloadDelay, scene));
+        if (Died != null)
+        {
+            Died(restartDelay);
+        }
+        else
+        {
+            StartCoroutine(ReloadAfter(restartDelay));
+        }
     }
 
     private void ShowDeath()
@@ -73,13 +80,13 @@ public class DeadPlayer : MonoBehaviour
         }
     }
 
-    private static IEnumerator ReloadAfter(float delay, int sceneBuildIndex)
+    private static IEnumerator ReloadAfter(float delay)
     {
         if (delay > 0f)
         {
             yield return new WaitForSeconds(delay);
         }
 
-        SceneManager.LoadScene(sceneBuildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

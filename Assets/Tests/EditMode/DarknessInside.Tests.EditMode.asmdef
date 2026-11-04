@@ -2,6 +2,7 @@
     "name": "DarknessInside.Tests.EditMode",
     "rootNamespace": "DarknessInside.Tests",
     "references": [
+        "DarknessInside.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

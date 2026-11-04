@@ -30,7 +30,7 @@ public class RidllePressButton : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
             if (Controller.GetComponentInChildren<RiddleController>().count==1)
