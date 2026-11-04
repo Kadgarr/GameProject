@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Постепенно растворяет картинки (затемнение уровня). Скорость задаётся в секунду, поэтому
-/// не зависит от FPS; когда картинки исчезли, компонент больше ничего не делает.
+/// Постепенно растворяет картинки (цветной слой уходит, под ним остаётся серый). Скорость задаётся в секунду,
+/// поэтому не зависит от FPS. Прозрачность меняется через CanvasRenderer.SetAlpha — канвас не перестраивает
+/// меш каждый кадр. Когда картинка исчезла полностью, её Image выключается и больше не рисуется (нет overdraw).
 /// </summary>
 public class ColorScript : MonoBehaviour
 {
@@ -35,22 +36,32 @@ public class ColorScript : MonoBehaviour
 
     private IEnumerator Fade()
     {
+        SetEnabled(true);
         float alpha = 1f;
         Apply(alpha);
         while (alpha > 0f)
         {
+            yield return null;
             alpha = Mathf.Max(0f, alpha - fadePerSecond * Time.deltaTime);
             Apply(alpha);
-            yield return null;
         }
+
+        SetEnabled(false);
     }
 
     private void Apply(float alpha)
     {
-        var color = new Color(1f, 1f, 1f, alpha);
         for (int i = 0; i < _images.Count; i++)
         {
-            _images[i].color = color;
+            _images[i].canvasRenderer.SetAlpha(alpha);
+        }
+    }
+
+    private void SetEnabled(bool value)
+    {
+        for (int i = 0; i < _images.Count; i++)
+        {
+            _images[i].enabled = value;
         }
     }
 }
