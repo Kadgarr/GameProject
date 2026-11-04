@@ -1,83 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Загадка уровня 12: две группы кнопок, каждая прибавляет или убирает своё число к сумме группы.
+/// Дверь открывается, когда разность сумм равна 8.
+/// </summary>
 public class Riddle2Code : MonoBehaviour
 {
+    private const int TargetDifference = 8;
+
     public int number;
     public int numberOfGroupButtons;
-
     public GameObject objCanv;
-
-
-    private bool check;
-    private bool check2;
 
     public GameObject cell1;
     public GameObject cell2;
     public GameObject cell3;
     public GameObject doorObj;
 
-    DoorOpen door;
-    SummRiddle2 summ;
+    private bool _activeInGroup;
+    private DoorOpen _door;
+    private SummRiddle2 _sum;
+    private Text _cell1;
+    private Text _cell2;
+    private Text _cell3;
 
-    Text cell_1;
-    Text cell_2;
-    Text cell_3;
-
-    private void Start()
+    private void Awake()
     {
-        cell_1 = cell1.GetComponent<Text>();
-        cell_2 = cell2.GetComponent<Text>();
-        cell_3 = cell3.GetComponent<Text>();
-        door = doorObj.GetComponent<DoorOpen>();
-        summ = objCanv.GetComponent<SummRiddle2>();
+        _cell1 = cell1 != null ? cell1.GetComponent<Text>() : null;
+        _cell2 = cell2 != null ? cell2.GetComponent<Text>() : null;
+        _cell3 = cell3 != null ? cell3.GetComponent<Text>() : null;
+        _door = doorObj != null ? doorObj.GetComponent<DoorOpen>() : null;
+        _sum = objCanv != null ? objCanv.GetComponent<SummRiddle2>() : null;
     }
 
     public void RiddleClick()
     {
-        if(numberOfGroupButtons == 1)
+        if (_sum == null)
         {
-            if (check)
-            {
-                summ.summ1 -= number;
-                check = false;
-            }
-            else
-            {
-                summ.summ1 += number;
-                check = true;
-            }
-            Translate(1);
+            return;
+        }
+
+        int delta = _activeInGroup ? -number : number;
+        _activeInGroup = !_activeInGroup;
+
+        if (numberOfGroupButtons == 1)
+        {
+            _sum.summ1 += delta;
+            SetText(_cell1, _sum.summ1);
+        }
+        else if (numberOfGroupButtons == 2)
+        {
+            _sum.summ2 += delta;
+            SetText(_cell2, _sum.summ2);
         }
         else
-        if (numberOfGroupButtons == 2)
         {
-            if (check2)
-            {
-                summ.summ2 -= number;
-                check2 = false;
-            }
-            else
-            {
-                summ.summ2 += number;
-                check2 = true;
-            }
-            Translate(2);
+            return;
+        }
+
+        int difference = _sum.summ1 - _sum.summ2;
+        SetText(_cell3, difference);
+        if (difference == TargetDifference && _door != null)
+        {
+            _door.OpenedDoor(true);
         }
     }
 
-    public void Translate(int check)
+    private static void SetText(Text text, int value)
     {
-        if (check == 1)
-            cell_1.text = summ.summ1.ToString();
-        else if (check == 2)
-            cell_2.text = summ.summ2.ToString();
-        cell_3.text = (summ.summ1 - summ.summ2).ToString();
-        if ((summ.summ1 - summ.summ2) == 8)
+        if (text != null)
         {
-            door.GetComponent<DoorOpen>().OpenedDoor(true);
+            text.text = value.ToString();
         }
     }
 }

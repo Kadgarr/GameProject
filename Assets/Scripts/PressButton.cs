@@ -1,65 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Timers;
+﻿using DarknessInside.Gameplay.Puzzles;
 using UnityEngine;
 
-public class PressButton : MonoBehaviour
+/// <summary>Кнопка на полу, которая открывает дверь.</summary>
+public class PressButton : PressurePlate
 {
-    public Sprite switchOnBut;
-    public Sprite switchOffBut;
-
-    public float timer;
-    public bool stateOFdoor=false;
+    [Tooltip("Дверь (объект с DoorOpen в дочерних).")]
     public GameObject objectd;
 
+    private DoorOpen _door;
 
-
-
-
-    //public void OnTriggerEnter2D(Collider2D Other)
-    //{
-
-    //    if (Other.CompareTag("Player") )
-    //    {
-    //        GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-    //        Proverka = false;
-    //        stateOFdoor = true;
-    //        objectd.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOFdoor);
-    //    }
-
-    //}
-
-    /*public void OnCollisionEnter2D (Collision2D collision)
+    protected override void Awake()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            Proverka = false;
-            stateOFdoor = true;
-            objectd.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOFdoor);
-        }
-    }*/
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            
-            try
-            {
-                stateOFdoor = true;
-                objectd.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOFdoor);
-            }
-            catch
-            {
-
-            }
-            
-        }
+        base.Awake();
+        _door = objectd != null ? objectd.GetComponentInChildren<DoorOpen>() : null;
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    protected override void OnPressed()
     {
-        GetComponentInChildren<SpriteRenderer>().sprite = switchOffBut;
+        if (_door != null)
+        {
+            _door.OpenedDoor(true);
+        }
     }
 }

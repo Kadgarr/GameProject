@@ -259,7 +259,7 @@ MonoBehaviour:
   elements:
   - element: {fileID: 1982343161}
   - element: {fileID: 172215058}
-  fillingCount: 0.0001
+  fadePerSecond: 0.003
 --- !u!114 &27859763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,11 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuObject: {fileID: 1730329189}
-  ButtonUp: {fileID: 1462078463}
-  ButtonLeft: {fileID: 1355421708}
-  ButtonRight: {fileID: 1796568591}
-  ButtonPause: {fileID: 1175761887}
   hintCanv: {fileID: 452026285}
+  controls: {fileID: 1243029204}
+  levelFlow: {fileID: 84630808}
+  clickSound: {fileID: 27859768}
 --- !u!114 &27859764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  fallGravityScale: 2
 --- !u!61 &134598954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3005,6 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  fallGravityScale: 2
 --- !u!61 &384368784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5982,6 +5983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 2
+  fallGravityScale: 2
 --- !u!50 &814603358
 Rigidbody2D:
   serializedVersion: 5
@@ -6395,12 +6397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   step: 0.02
-  Check: 1
   second: 3
-  GlobalCheck: 1
   posYUp: {x: -4.38, y: -12.96, z: 0}
   posYDown: {x: -4.38, y: -13.51, z: 0}
-  CheckPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &938067795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6597,8 +6596,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 2
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   objectd: {fileID: 1089229604}
 --- !u!61 &962797697
 BoxCollider2D:
@@ -8638,18 +8641,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc9a5b6644881e342b565a66b8f07c2f, type: 3}
---- !u!114 &1175761887 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414017524600, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1228970609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9405,6 +9396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643380f9f2fe34469ad1fe37411c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1243029204 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 327012737219727498, guid: 232053a1a59eddc4e840e83426453367,
+    type: 3}
+  m_PrefabInstance: {fileID: 1243029202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1248720998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9514,6 +9511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  fallGravityScale: 2
 --- !u!50 &1248721001
 Rigidbody2D:
   serializedVersion: 5
@@ -9612,18 +9610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
---- !u!114 &1355421708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414446426408, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1362946711
 GameObject:
   m_ObjectHideFlags: 0
@@ -9816,18 +9802,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 134598953}
   m_SourcePrefab: {fileID: 100100000, guid: a5f8b6b327d850e47bf3f3ab44f91941, type: 3}
---- !u!114 &1462078463 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015413954135541, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1463900485
 GameObject:
   m_ObjectHideFlags: 0
@@ -9941,6 +9915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  fallGravityScale: 2
 --- !u!61 &1476456759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11007,6 +10982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  fallGravityScale: 2
 --- !u!61 &1729810535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11479,18 +11455,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5f8b6b327d850e47bf3f3ab44f91941, type: 3}
---- !u!114 &1796568591 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414703213895, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1858140473
 PrefabInstance:
   m_ObjectHideFlags: 0

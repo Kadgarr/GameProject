@@ -1,37 +1,53 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>Платформа, которая падает через timer секунд после того, как на неё зашёл игрок.</summary>
 public class FallPlatform : MonoBehaviour
 {
-    private bool Check=false;
+    private const string PlayerTag = "Player";
+
+    [Tooltip("Через сколько секунд после касания игрока платформа падает.")]
     public float timer;
 
+    [SerializeField] private float fallGravityScale = 2f;
 
-    private void Update()
+    private Rigidbody2D _body;
+    private BoxCollider2D _collider;
+    private bool _triggered;
+
+    private void Awake()
     {
-        if (Check == true)
-        {
-           
-            if (timer <= 0)
-            {
-                timer = 0.3f;
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                this.GetComponent<Rigidbody2D>().gravityScale = 2;
-                this.GetComponent<BoxCollider2D>().enabled = false;
-            }
-            else 
-            {
-                timer -= Time.deltaTime;
-            }
-        }
+        _body = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (_triggered || !other.CompareTag(PlayerTag))
         {
-            Check = true;
+            return;
+        }
+
+        _triggered = true;
+        StartCoroutine(FallAfterDelay());
+    }
+
+    private IEnumerator FallAfterDelay()
+    {
+        if (timer > 0f)
+        {
+            yield return new WaitForSeconds(timer);
+        }
+
+        if (_body != null)
+        {
+            _body.bodyType = RigidbodyType2D.Dynamic;
+            _body.gravityScale = fallGravityScale;
+        }
+
+        if (_collider != null)
+        {
+            _collider.enabled = false;
         }
     }
 }

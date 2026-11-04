@@ -1991,11 +1991,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuObject: {fileID: 1730329189}
-  ButtonUp: {fileID: 1462078463}
-  ButtonLeft: {fileID: 1355421708}
-  ButtonRight: {fileID: 1796568591}
-  ButtonPause: {fileID: 1175761887}
   hintCanv: {fileID: 809757044}
+  controls: {fileID: 1243029204}
+  levelFlow: {fileID: 84630808}
+  clickSound: {fileID: 527500817}
 --- !u!114 &527500816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +2009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements:
   - element: {fileID: 597690016}
-  fillingCount: 0.0005
+  fadePerSecond: 0.015
 --- !u!82 &527500817
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2598,8 +2597,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &655015325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3308,8 +3311,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &986900788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4830,18 +4837,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171332095}
   m_CullTransparentMesh: 0
---- !u!114 &1175761887 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414017524600, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!850595691 &1215703956
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -5112,6 +5107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643380f9f2fe34469ad1fe37411c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1243029204 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 327012737219727498, guid: 232053a1a59eddc4e840e83426453367,
+    type: 3}
+  m_PrefabInstance: {fileID: 1243029202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1325014954
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,8 +5165,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1325014957
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5247,30 +5252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
---- !u!114 &1355421708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414446426408, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1462078463 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015413954135541, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1484849781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,8 +5701,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1624631029
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6399,8 +6384,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1789492666
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6463,18 +6452,6 @@ Transform:
   - {fileID: 1565675905}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1796568591 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414703213895, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1243029202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1820753345
 GameObject:
   m_ObjectHideFlags: 0
@@ -6527,8 +6504,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 0
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1820753348
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DarknessInside.Core;
 using DarknessInside.Core.Levels;
 using DarknessInside.Core.Save;
 using UnityEngine;
@@ -32,6 +33,8 @@ namespace DarknessInside.Gameplay.Levels
 
         private void Awake()
         {
+            // Уровень всегда начинается без паузы (например, после выхода в меню с паузы).
+            GamePause.Set(false);
             LevelNumber = levels != null ? levels.GetLevelNumber(gameObject.scene.name) : 0;
         }
 

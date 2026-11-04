@@ -494,13 +494,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   NumberForRiddle: 7
   Cell1: {fileID: 508014645}
   Cell2: {fileID: 1524423082}
   Cell3: {fileID: 605755898}
   Cell4: {fileID: 529649597}
   Controller: {fileID: 311397511}
-  stateOFdoor: 0
 --- !u!61 &104235073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2226,13 +2231,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   NumberForRiddle: 3
   Cell1: {fileID: 508014645}
   Cell2: {fileID: 1524423082}
   Cell3: {fileID: 605755898}
   Cell4: {fileID: 529649597}
   Controller: {fileID: 311397511}
-  stateOFdoor: 0
 --- !u!61 &431143466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2684,11 +2694,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuObject: {fileID: 1592911189}
-  ButtonUp: {fileID: 2114304478}
-  ButtonLeft: {fileID: 2114304477}
-  ButtonRight: {fileID: 2114304476}
-  ButtonPause: {fileID: 2114304475}
   hintCanv: {fileID: 1036299000}
+  controls: {fileID: 2114304475}
+  levelFlow: {fileID: 2147243744}
+  clickSound: {fileID: 527500816}
 --- !u!82 &527500816
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4661,13 +4670,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   NumberForRiddle: 5
   Cell1: {fileID: 508014645}
   Cell2: {fileID: 1524423082}
   Cell3: {fileID: 605755898}
   Cell4: {fileID: 529649597}
   Controller: {fileID: 311397511}
-  stateOFdoor: 0
 --- !u!61 &1160137564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6277,13 +6291,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   NumberForRiddle: 4
   Cell1: {fileID: 508014645}
   Cell2: {fileID: 1524423082}
   Cell3: {fileID: 605755898}
   Cell4: {fileID: 529649597}
   Controller: {fileID: 311397511}
-  stateOFdoor: 0
 --- !u!61 &2114185825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6567,54 +6586,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 232053a1a59eddc4e840e83426453367, type: 3}
---- !u!114 &2114304475 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414017524600, guid: 232053a1a59eddc4e840e83426453367,
+--- !u!225 &2114304475 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 327012737219727498, guid: 232053a1a59eddc4e840e83426453367,
     type: 3}
   m_PrefabInstance: {fileID: 2114304474}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2114304476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414703213895, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 2114304474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2114304477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015414446426408, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 2114304474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2114304478 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8310015413954135541, guid: 232053a1a59eddc4e840e83426453367,
-    type: 3}
-  m_PrefabInstance: {fileID: 2114304474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2114304479 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8397205556291292964, guid: 232053a1a59eddc4e840e83426453367,

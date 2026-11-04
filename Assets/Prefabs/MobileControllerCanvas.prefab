@@ -1006,6 +1006,7 @@ GameObject:
   - component: {fileID: 8310015414733337716}
   - component: {fileID: 8158288939608280961}
   - component: {fileID: 8397205556291292964}
+  - component: {fileID: 327012737219727498}
   m_Layer: 5
   m_Name: MobileControllerCanvas
   m_TagString: MobileControl
@@ -1210,6 +1211,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643380f9f2fe34469ad1fe37411c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &327012737219727498
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310015414733337719}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8310015415599869634
 GameObject:
   m_ObjectHideFlags: 0

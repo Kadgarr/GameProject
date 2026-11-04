@@ -20,9 +20,9 @@
             }
         }
 
-        protected override void OnDisable()
+        protected override void ResetInput()
         {
-            base.OnDisable();
+            base.ResetInput();
             _left = false;
             _right = false;
         }

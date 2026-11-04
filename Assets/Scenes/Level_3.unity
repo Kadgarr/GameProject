@@ -2222,11 +2222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuObject: {fileID: 8914517788518895708}
-  ButtonUp: {fileID: 0}
-  ButtonLeft: {fileID: 0}
-  ButtonRight: {fileID: 0}
-  ButtonPause: {fileID: 0}
   hintCanv: {fileID: 325928620}
+  controls: {fileID: 1012001669}
+  levelFlow: {fileID: 2147243744}
+  clickSound: {fileID: 527500816}
 --- !u!82 &527500816
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3139,8 +3138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnBut: {fileID: 21300000, guid: 2a64dd940b3dac341934ca928401d50d, type: 3}
   switchOffBut: {fileID: 21300000, guid: 0f7fc26b1fa4f324eba0a7b7c1754963, type: 3}
-  timer: 2
-  stateOFdoor: 0
+  pressed:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
   objectd: {fileID: 1089229604}
 --- !u!61 &962797697
 BoxCollider2D:
@@ -3437,6 +3440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643380f9f2fe34469ad1fe37411c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1012001669 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 327012737219727498, guid: 232053a1a59eddc4e840e83426453367,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012001667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1076521141
 GameObject:
   m_ObjectHideFlags: 0

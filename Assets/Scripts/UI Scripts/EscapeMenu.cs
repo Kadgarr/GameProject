@@ -1,101 +1,73 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DarknessInside.Core;
+using DarknessInside.Gameplay.Levels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
+/// <summary>
+/// Пауза, выход в меню и подсказка на уровне. На паузе экранное управление выключается
+/// через CanvasGroup — без перебора отдельных кнопок.
+/// </summary>
 public class EscapeMenu : MonoBehaviour
 {
-    public bool GameIsPaused { get; private set; }
-    public GameObject pauseMenuObject;
-    public Button ButtonUp;
-    public Button ButtonLeft;
-    public Button ButtonRight;
-    public Button ButtonPause;
+    private const string MenuScene = "SceneMenu";
 
+    public GameObject pauseMenuObject;
     public GameObject hintCanv;
 
+    [Tooltip("CanvasGroup канваса управления: на паузе его кнопки не нажимаются.")]
+    [SerializeField] private CanvasGroup controls;
+    [SerializeField] private LevelFlow levelFlow;
+    [Tooltip("Звук нажатия. Пусто — AudioSource на этом объекте или выше.")]
+    [SerializeField] private AudioSource clickSound;
 
+    public bool GameIsPaused => GamePause.IsPaused;
+
+    private void Awake()
+    {
+        if (clickSound == null)
+        {
+            clickSound = GetComponentInParent<AudioSource>();
+        }
+    }
 
     public void Pause()
     {
-        pauseMenuObject.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
+        SetActive(pauseMenuObject, true);
+        GamePause.Set(true);
         PlayClick();
         SetControlsEnabled(false);
     }
 
     public void Continue()
     {
-        pauseMenuObject.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
+        SetActive(pauseMenuObject, false);
+        GamePause.Set(false);
         PlayClick();
         SetControlsEnabled(true);
-    }
-
-    private void PlayClick()
-    {
-        var click = GetComponentInParent<AudioSource>();
-        if (click != null)
-        {
-            click.Play();
-        }
-    }
-
-    /// <summary>
-    /// Включает/выключает обработку нажатий на кнопках управления (Button, ControlButton, EventTrigger и т.п.).
-    /// Пустые ссылки пропускаются — на некоторых уровнях часть кнопок не задана.
-    /// </summary>
-    private void SetControlsEnabled(bool enabled)
-    {
-        SetButtonEnabled(ButtonUp, enabled);
-        SetButtonEnabled(ButtonLeft, enabled);
-        SetButtonEnabled(ButtonRight, enabled);
-        SetButtonEnabled(ButtonPause, enabled);
-    }
-
-    private static void SetButtonEnabled(Button button, bool enabled)
-    {
-        if (button == null)
-        {
-            return;
-        }
-
-        foreach (Behaviour behaviour in button.GetComponents<Behaviour>())
-        {
-            if (behaviour is Selectable || behaviour is IEventSystemHandler)
-            {
-                behaviour.enabled = enabled;
-            }
-        }
     }
 
     public void Menu()
     {
         PlayClick();
-        Resources.UnloadUnusedAssets();
-        SceneManager.LoadScene("SceneMenu");
-        GameIsPaused = false;
-        Time.timeScale = 1f;
+        GamePause.Set(false);
+        if (levelFlow != null)
+        {
+            levelFlow.ExitToMenu();
+        }
+        else
+        {
+            SceneManager.LoadScene(MenuScene);
+        }
     }
 
     public void HintQuestionButton()
     {
-        if (hintCanv != null)
-        {
-            hintCanv.SetActive(true);
-        }
+        SetActive(hintCanv, true);
     }
 
     public void HintExitButton()
     {
-        if (hintCanv != null)
-        {
-            hintCanv.SetActive(false);
-        }
+        SetActive(hintCanv, false);
     }
 
     public void Quit()
@@ -103,5 +75,30 @@ public class EscapeMenu : MonoBehaviour
         Application.Quit();
     }
 
-  
+    private void PlayClick()
+    {
+        if (clickSound != null && clickSound.isActiveAndEnabled)
+        {
+            clickSound.Play();
+        }
+    }
+
+    private void SetControlsEnabled(bool enabled)
+    {
+        if (controls == null)
+        {
+            return;
+        }
+
+        controls.interactable = enabled;
+        controls.blocksRaycasts = enabled;
+    }
+
+    private static void SetActive(GameObject target, bool active)
+    {
+        if (target != null)
+        {
+            target.SetActive(active);
+        }
+    }
 }

@@ -1,27 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>Кодовый замок уровня 6: номер текущей ячейки и проверка введённого кода.</summary>
 public class RiddleController : MonoBehaviour
 {
-    public int count=1;
-    string text1;
-    string text2 = "7777";
-    public GameObject Door;
-    bool stateOfDoor = false;
+    private const string Solution = "7777";
 
+    public int count = 1;
+    public GameObject Door;
+
+    private string _entered = string.Empty;
+    private DoorOpen _door;
+
+    private void Awake()
+    {
+        _door = Door != null ? Door.GetComponentInChildren<DoorOpen>() : null;
+    }
+
+    /// <summary>Переход к следующей ячейке (кнопку отпустили).</summary>
     public void ButtonController1()
     {
         count++;
     }
-    public void ButtonController2(string text)
+
+    /// <summary>Введена цифра.</summary>
+    public void ButtonController2(string digit)
     {
-        print(text1);
-        text1 += text;
-        if (text2 == text1)
+        _entered += digit;
+        if (_entered == Solution && _door != null)
         {
-            stateOfDoor = true;
-            Door.GetComponentInChildren<DoorOpen>().OpenedDoor(stateOfDoor);
+            _door.OpenedDoor(true);
         }
     }
 }

@@ -1,50 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>Ячейка кодового замка уровня 6: показывает введённую цифру.</summary>
 public class RiddleCode : MonoBehaviour
 {
     public bool stateOfDoor;
     public GameObject Door;
+
     public Sprite Cell3;
     public Sprite Cell4;
     public Sprite Cell5;
     public Sprite Cell7;
-    string text1;
 
-    public void Code(string text)
+    private SpriteRenderer _renderer;
+    private string _entered;
+
+    private void Awake()
     {
-        if (text1 != text )
-        {
-            if (text == "3")
-            {
-                GetComponentInChildren<SpriteRenderer>().sprite = Cell3;
-                text1 += text;
-               
-            }
-            if (text == "4")
-            {
-                GetComponentInChildren<SpriteRenderer>().sprite = Cell4;
-                text1 += text;
-
-            }
-            if (text == "5")
-            {
-                this.GetComponentInChildren<SpriteRenderer>().sprite = Cell5;
-                text1 += text;
-          
-            }
-            if (text == "7")
-            {
-                this.GetComponentInChildren<SpriteRenderer>().sprite = Cell7;
-                text1 += text;
-         
-            }
-         
-            
-        }
-        
-        
+        _renderer = GetComponentInChildren<SpriteRenderer>();
     }
-    
+
+    public void Code(string digit)
+    {
+        if (_entered == digit)
+        {
+            return;
+        }
+
+        Sprite sprite = SpriteFor(digit);
+        if (sprite == null)
+        {
+            return;
+        }
+
+        if (_renderer != null)
+        {
+            _renderer.sprite = sprite;
+        }
+
+        _entered += digit;
+    }
+
+    private Sprite SpriteFor(string digit)
+    {
+        switch (digit)
+        {
+            case "3":
+                return Cell3;
+            case "4":
+                return Cell4;
+            case "5":
+                return Cell5;
+            case "7":
+                return Cell7;
+            default:
+                return null;
+        }
+    }
 }

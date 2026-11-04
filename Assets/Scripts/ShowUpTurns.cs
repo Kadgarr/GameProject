@@ -1,79 +1,65 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-using System.Threading;
-
+/// <summary>
+/// Шипы, которые по циклу выдвигаются и прячутся. Движение начинается в секунды уровня, кратные
+/// периоду, поэтому все такие шипы на уровне работают синхронно (раньше — по системным часам).
+/// Работает корутиной по шагам физики, без Update.
+/// </summary>
 public class ShowUpTurns : MonoBehaviour
 {
-    public float step;
+    private static readonly WaitForFixedUpdate FixedStep = new WaitForFixedUpdate();
 
-    private float progress;
+    [Tooltip("Доля пути за шаг физики: 0.02 — ход длится 50 шагов (1 секунда).")]
+    public float step = 0.02f;
 
-    private float progress2;
-
-
-    public bool Check;
-
-    public float second;
-
-    public bool GlobalCheck;
+    [Tooltip("Период в секундах: ход начинается в секунды уровня, кратные этому числу.")]
+    public float second = 3f;
 
     public Vector3 posYUp;
-
     public Vector3 posYDown;
 
-    private Vector3 startPos;
-    
-    public Vector3 CheckPosition;
-
-
-
-    // Update is called once per frame
-
-    private void Start()
+    private void OnEnable()
     {
-        CheckPosition = transform.position;
-        
+        StartCoroutine(Cycle());
     }
 
-    
-    void FixedUpdate()
+    private IEnumerator Cycle()
     {
-        CheckPosition = transform.position;
-        
-            if (CheckPosition == posYUp )
-            {
-                if (DateTime.Now.Second % second == 0 )
-                {
-                    Check = true;
-                    progress2 = 0;
-                }
-                
-            }
-            else if (CheckPosition == posYDown)
-            {
-                if (DateTime.Now.Second % second == 0)
-                {
-                    Check = false;
-                    progress = 0;
-                }
-                
-            }
-            
-            if (Check && progress2==0)
-            {
-                transform.position = Vector3.Lerp(posYUp, posYDown, progress);
-                progress += step;
+        bool startsDown = (transform.position - posYDown).sqrMagnitude < (transform.position - posYUp).sqrMagnitude;
+        if (startsDown)
+        {
+            yield return WaitForBeat();
+            yield return Move(posYDown, posYUp);
+        }
 
-            }
-            else if(!Check && progress==0)
-            {
-                transform.position = Vector3.Lerp(posYDown, posYUp, progress2);
-                progress2 += step;
-            }
-        
+        while (true)
+        {
+            yield return WaitForBeat();
+            yield return Move(posYUp, posYDown);
+            yield return WaitForBeat();
+            yield return Move(posYDown, posYUp);
+        }
     }
-    
+
+    private IEnumerator WaitForBeat()
+    {
+        int period = Mathf.Max(1, Mathf.RoundToInt(second));
+        while (Mathf.FloorToInt(Time.timeSinceLevelLoad) % period != 0)
+        {
+            yield return FixedStep;
+        }
+    }
+
+    private IEnumerator Move(Vector3 from, Vector3 to)
+    {
+        float safeStep = Mathf.Max(step, 0.001f);
+        for (float progress = 0f; progress < 1f; progress += safeStep)
+        {
+            transform.position = Vector3.Lerp(from, to, progress);
+            yield return FixedStep;
+        }
+
+        transform.position = to;
+    }
 }

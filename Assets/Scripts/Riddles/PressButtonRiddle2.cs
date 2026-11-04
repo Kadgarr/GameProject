@@ -1,34 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Timers;
-using UnityEngine;
+﻿using DarknessInside.Gameplay.Puzzles;
 
-public class PressButtonRiddle2 : MonoBehaviour
+/// <summary>Кнопка загадки уровня 12: при нажатии прибавляет/убирает своё число (Riddle2Code).</summary>
+public class PressButtonRiddle2 : PressurePlate
 {
-    public Sprite switchOnBut;
-    public Sprite switchOffBut;
+    private Riddle2Code _riddle;
 
-    public float timer;
-    public bool stateOFdoor=false;
-  
-    Riddle2Code riddle;
-
-    private void Start()
-        {
-            riddle = this.GetComponent<Riddle2Code>();
-        }
-
-    public void OnCollisionEnter2D(Collision2D collision)
+    protected override void Awake()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            riddle.RiddleClick();
-        }
+        base.Awake();
+        _riddle = GetComponent<Riddle2Code>();
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    protected override void OnPressed()
     {
-        GetComponentInChildren<SpriteRenderer>().sprite = switchOffBut;
+        if (_riddle != null)
+        {
+            _riddle.RiddleClick();
+        }
     }
 }

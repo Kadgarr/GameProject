@@ -1,41 +1,51 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Шкала, которая постепенно убывает; когда опустеет — игрок погибает.</summary>
+/// <summary>
+/// Шкала, которая постепенно убывает; когда опустеет — игрок погибает.
+/// Скорость задаётся в секунду, поэтому не зависит от FPS. На паузе шкала стоит.
+/// </summary>
 public class Scale : MonoBehaviour
 {
     public Image fillingScale;
-
     public GameObject diePlayer;
 
-    // TODO(этап 3): убывание за кадр зависит от FPS — перевести на «в секунду» вместе с переходом на 60 FPS.
-    public float filling = 0.0001f;
+    [Tooltip("Какая доля шкалы убывает за секунду (0.01 — вся шкала за 100 с).")]
+    [SerializeField] private float drainPerSecond = 0.003f;
 
-    private bool _expired;
+    private DeadPlayer _player;
+    private Die _die;
 
-    private void Update()
+    private void Awake()
     {
-        if (_expired)
+        _player = diePlayer != null ? diePlayer.GetComponent<DeadPlayer>() : null;
+        _die = GetComponent<Die>();
+    }
+
+    private void OnEnable()
+    {
+        if (fillingScale != null)
         {
-            return;
+            StartCoroutine(Drain());
+        }
+    }
+
+    private IEnumerator Drain()
+    {
+        while (fillingScale.fillAmount > 0f)
+        {
+            fillingScale.fillAmount -= drainPerSecond * Time.deltaTime;
+            yield return null;
         }
 
-        fillingScale.fillAmount -= filling;
-        if (fillingScale.fillAmount > 0f)
+        if (_die != null)
         {
-            return;
+            _die.Kill(_player);
         }
-
-        _expired = true;
-        DeadPlayer deadPlayer = diePlayer != null ? diePlayer.GetComponent<DeadPlayer>() : null;
-        var die = GetComponent<Die>();
-        if (die != null)
+        else if (_player != null)
         {
-            die.Kill(deadPlayer);
-        }
-        else if (deadPlayer != null)
-        {
-            deadPlayer.Kill(1f);
+            _player.Kill(1f);
         }
     }
 }

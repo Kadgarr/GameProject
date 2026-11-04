@@ -1,65 +1,66 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DarknessInside.Gameplay.Puzzles;
 using UnityEngine;
 
-public class RidllePressButton : MonoBehaviour
+/// <summary>
+/// Кнопка кодового замка уровня 6: при нажатии записывает свою цифру в текущую ячейку,
+/// при отпускании замок переходит к следующей ячейке.
+/// </summary>
+public class RidllePressButton : PressurePlate
 {
-    // Start is called before the first frame update
-    public Sprite switchOnBut;
-    public Sprite switchOffBut;
     public int NumberForRiddle;
+
     public GameObject Cell1;
     public GameObject Cell2;
     public GameObject Cell3;
     public GameObject Cell4;
     public GameObject Controller;
 
+    private RiddleController _controller;
+    private readonly RiddleCode[] _cells = new RiddleCode[4];
+    private string _digit;
 
-
-    public bool stateOFdoor = false;
-
-    void Start()
+    protected override void Awake()
     {
-        
+        base.Awake();
+        _digit = NumberForRiddle.ToString();
+        _controller = Controller != null ? Controller.GetComponentInChildren<RiddleController>() : null;
+        _cells[0] = FindCell(Cell1);
+        _cells[1] = FindCell(Cell2);
+        _cells[2] = FindCell(Cell3);
+        _cells[3] = FindCell(Cell4);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnPressed()
     {
-        
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (_controller == null)
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            if (Controller.GetComponentInChildren<RiddleController>().count==1)
-            {
-                Cell1.GetComponentInChildren<RiddleCode>().Code(NumberForRiddle.ToString());
-                Controller.GetComponentInChildren<RiddleController>().ButtonController2(NumberForRiddle.ToString());
-            }
-            if (Controller.GetComponentInChildren<RiddleController>().count == 2)
-            {
-                Cell2.GetComponentInChildren<RiddleCode>().Code(NumberForRiddle.ToString());
-                Controller.GetComponentInChildren<RiddleController>().ButtonController2(NumberForRiddle.ToString());
-            }
-            if (Controller.GetComponentInChildren<RiddleController>().count == 3)
-            {
-                Cell3.GetComponentInChildren<RiddleCode>().Code(NumberForRiddle.ToString());
-                Controller.GetComponentInChildren<RiddleController>().ButtonController2(NumberForRiddle.ToString());
-            }
-            if (Controller.GetComponentInChildren<RiddleController>().count == 4)
-            {
-                Cell4.GetComponentInChildren<RiddleCode>().Code(NumberForRiddle.ToString());
-                Controller.GetComponentInChildren<RiddleController>().ButtonController2(NumberForRiddle.ToString());
-            }
+            return;
+        }
+
+        int index = _controller.count - 1;
+        if (index < 0 || index >= _cells.Length)
+        {
+            return;
+        }
+
+        if (_cells[index] != null)
+        {
+            _cells[index].Code(_digit);
+        }
+
+        _controller.ButtonController2(_digit);
+    }
+
+    protected override void OnReleased()
+    {
+        if (_controller != null)
+        {
+            _controller.ButtonController1();
         }
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    private static RiddleCode FindCell(GameObject cell)
     {
-        Controller.GetComponentInChildren<RiddleController>().ButtonController1();
-        GetComponentInChildren<SpriteRenderer>().sprite = switchOffBut;
-       
+        return cell != null ? cell.GetComponentInChildren<RiddleCode>() : null;
     }
 }
