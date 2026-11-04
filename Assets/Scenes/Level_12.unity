@@ -2557,7 +2557,7 @@ GameObject:
   - component: {fileID: 655015325}
   - component: {fileID: 655015324}
   - component: {fileID: 655015323}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2613,7 +2613,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2851,10 +2851,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 1.7
   SpeedOfPlatform: 3
-  direction: {x: 0, y: 0, z: 0}
   IntOfDirection: -1
   time: 1.5
   DirectionUp: 0
+--- !u!50 &782222465
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782222463}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &809757043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3209,7 +3235,7 @@ GameObject:
   - component: {fileID: 962797697}
   - component: {fileID: 962797698}
   - component: {fileID: 962797696}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3261,7 +3287,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3329,11 +3355,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980266728718482149, guid: bffc5ed52b0790743a96d788ea1b4d51,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338246989712776407, guid: bffc5ed52b0790743a96d788ea1b4d51,
         type: 3}
@@ -4251,6 +4272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4259,6 +4285,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158687, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
     - target: {fileID: 407262467379158689, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
       propertyPath: m_RootOrder
@@ -4331,7 +4362,7 @@ GameObject:
   - component: {fileID: 1089229607}
   - component: {fileID: 1089229606}
   - component: {fileID: 1089229605}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4361,7 +4392,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 558b629b505dd224193a742bb35acc58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5125,7 +5156,7 @@ GameObject:
   - component: {fileID: 1325014957}
   - component: {fileID: 1325014956}
   - component: {fileID: 1325014955}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (5)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5181,7 +5212,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5661,7 +5692,7 @@ GameObject:
   - component: {fileID: 1624631029}
   - component: {fileID: 1624631028}
   - component: {fileID: 1624631027}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5717,7 +5748,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6344,7 +6375,7 @@ GameObject:
   - component: {fileID: 1789492666}
   - component: {fileID: 1789492665}
   - component: {fileID: 1789492664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -6400,7 +6431,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6464,7 +6495,7 @@ GameObject:
   - component: {fileID: 1820753348}
   - component: {fileID: 1820753347}
   - component: {fileID: 1820753346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -6520,7 +6551,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6587,6 +6618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6595,6 +6631,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158687, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
     - target: {fileID: 407262467379158689, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
       propertyPath: m_RootOrder
@@ -6845,9 +6886,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
       propertyPath: m_TagString
       value: PlatformMove
       objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158687, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
     - target: {fileID: 407262467379158689, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
       propertyPath: m_RootOrder
@@ -6911,6 +6962,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 782222464}
+    - targetCorrespondingSourceObject: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 782222465}
   m_SourcePrefab: {fileID: 100100000, guid: a5f8b6b327d850e47bf3f3ab44f91941, type: 3}
 --- !u!1 &2026621371
 GameObject:

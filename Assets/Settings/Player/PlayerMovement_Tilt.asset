@@ -13,4 +13,14 @@ MonoBehaviour:
   m_Name: PlayerMovement_Tilt
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  groundAcceleration: 60
+  groundDeceleration: 80
+  airAcceleration: 35
   jumpImpulse: 12.8
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 2592
+  groundCheckDepth: 0.06
+  groundCheckWidth: 0.8

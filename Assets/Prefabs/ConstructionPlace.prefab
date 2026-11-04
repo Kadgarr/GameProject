@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3020268793463879258}
   - component: {fileID: 5522530220680773718}
   - component: {fileID: 9223172453645703505}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ConstructionPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 558b629b505dd224193a742bb35acc58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

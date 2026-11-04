@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace DarknessInside.Gameplay.Player
 {
     /// <summary>
     /// Движение игрока через Rigidbody2D (State Machine: Idle / Run / Jump / Dead).
-    /// Ввод берётся из IPlayerInput, параметры — из PlayerMovementSettings.
-    /// Animator меняется только при смене состояния, без вызовов каждый кадр.
+    /// Земля проверяется зоной под ногами по слоям (без тегов и событий столкновений);
+    /// есть coyote time и буфер прыжка. Движущаяся платформа под ногами передаёт игроку свою скорость.
+    /// Ввод — из IPlayerInput, параметры — из PlayerMovementSettings. Без аллокаций в шаге физики.
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class PlayerMotor : MonoBehaviour
@@ -18,9 +19,6 @@ namespace DarknessInside.Gameplay.Player
             Dead
         }
 
-        private const string GroundTag = "Ground";
-        private const string PlatformMoveTag = "PlatformMove";
-
         private static readonly int IsRunHash = Animator.StringToHash("IsRun");
         private static readonly int IsJumpHash = Animator.StringToHash("IsJump");
 
@@ -30,10 +28,16 @@ namespace DarknessInside.Gameplay.Player
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator animator;
 
+        private readonly Collider2D[] _groundHits = new Collider2D[4];
+
         private Rigidbody2D _body;
+        private Collider2D _collider;
         private DeadPlayer _death;
-        private Transform _homeParent;
+        private ContactFilter2D _groundFilter;
         private bool _grounded;
+        private Vector2 _groundVelocity;
+        private float _lastGroundedTime = float.NegativeInfinity;
+        private float _jumpRequestTime = float.NegativeInfinity;
 
         public State CurrentState { get; private set; }
 
@@ -48,8 +52,9 @@ namespace DarknessInside.Gameplay.Player
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
+            _collider = GetComponent<Collider2D>();
             _death = GetComponent<DeadPlayer>();
-            _homeParent = transform.parent;
+            _groundFilter = new ContactFilter2D { useTriggers = false, useLayerMask = true };
         }
 
         private void OnEnable()
@@ -75,71 +80,85 @@ namespace DarknessInside.Gameplay.Player
                 return;
             }
 
+            float now = Time.time;
+            float delta = Time.fixedDeltaTime;
+            UpdateGround(now);
+
             float horizontal = input != null ? input.Horizontal : 0f;
+            if (input != null && input.ConsumeJump())
+            {
+                _jumpRequestTime = now;
+            }
+
             Vector2 velocity = _body.linearVelocity;
-            velocity.x = horizontal * settings.moveSpeed;
-            _body.linearVelocity = velocity;
+
+            // Горизонталь считаем относительно опоры: на движущейся платформе игрок едет вместе с ней.
+            float relative = velocity.x - _groundVelocity.x;
+            float target = horizontal * settings.moveSpeed;
+            float rate = _grounded
+                ? (Mathf.Abs(target) > 0.01f ? settings.groundAcceleration : settings.groundDeceleration)
+                : settings.airAcceleration;
+            relative = Mathf.MoveTowards(relative, target, rate * delta);
+            velocity.x = relative + _groundVelocity.x;
+
+            bool canJump = now - _lastGroundedTime <= settings.coyoteTime;
+            bool wantsJump = now - _jumpRequestTime <= settings.jumpBufferTime;
+            if (canJump && wantsJump)
+            {
+                velocity.y = 0f;
+                _body.linearVelocity = velocity;
+                _body.AddForce(Vector2.up * settings.jumpImpulse, ForceMode2D.Impulse);
+                _jumpRequestTime = float.NegativeInfinity;
+                _lastGroundedTime = float.NegativeInfinity;
+                _grounded = false;
+                SetState(State.Jump);
+            }
+            else
+            {
+                _body.linearVelocity = velocity;
+                UpdateState(horizontal);
+            }
 
             if (horizontal != 0f && spriteRenderer != null)
             {
                 spriteRenderer.flipX = horizontal < 0f;
             }
+        }
 
-            if (input != null && input.ConsumeJump() && _grounded)
+        private void UpdateGround(float now)
+        {
+            Bounds bounds = _collider.bounds;
+            float depth = settings.groundCheckDepth;
+            var center = new Vector2(bounds.center.x, bounds.min.y - depth * 0.5f + 0.01f);
+            var size = new Vector2(bounds.size.x * settings.groundCheckWidth, depth);
+
+            _groundFilter.layerMask = settings.groundLayers;
+            int count = Physics2D.OverlapBox(center, size, 0f, _groundFilter, _groundHits);
+
+            // Пока игрок летит вверх после прыжка, касание края платформы землёй не считается.
+            _grounded = count > 0 && (CurrentState != State.Jump || _body.linearVelocity.y <= 0.01f);
+            _groundVelocity = Vector2.zero;
+            if (!_grounded)
             {
-                _body.AddForce(Vector2.up * settings.jumpImpulse, ForceMode2D.Impulse);
-                SetState(State.Jump);
                 return;
             }
 
-            if (CurrentState != State.Jump)
+            _lastGroundedTime = now;
+            Rigidbody2D support = _groundHits[0].attachedRigidbody;
+            if (support != null && support.bodyType == RigidbodyType2D.Kinematic)
             {
-                SetState(horizontal != 0f ? State.Run : State.Idle);
+                _groundVelocity = support.linearVelocity;
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void UpdateState(float horizontal)
         {
-            if (!IsGroundLike(collision.gameObject))
+            if (CurrentState == State.Jump && !_grounded)
             {
                 return;
             }
 
-            _grounded = true;
-            if (CurrentState == State.Jump)
-            {
-                SetState(State.Idle);
-            }
-        }
-
-        private void OnCollisionStay2D(Collision2D collision)
-        {
-            GameObject other = collision.gameObject;
-            if (!IsGroundLike(other))
-            {
-                return;
-            }
-
-            _grounded = true;
-            if (other.CompareTag(PlatformMoveTag))
-            {
-                AttachToPlatform(collision.transform);
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            GameObject other = collision.gameObject;
-            if (!IsGroundLike(other))
-            {
-                return;
-            }
-
-            _grounded = false;
-            if (other.CompareTag(PlatformMoveTag))
-            {
-                DetachFromPlatform(collision.transform);
-            }
+            SetState(horizontal != 0f ? State.Run : State.Idle);
         }
 
         private void OnDied(float restartDelay)
@@ -167,28 +186,20 @@ namespace DarknessInside.Gameplay.Player
             animator.SetBool(IsJumpHash, next == State.Jump);
         }
 
-        private static bool IsGroundLike(GameObject other)
+        private void OnDrawGizmosSelected()
         {
-            return other.CompareTag(GroundTag) || other.CompareTag(PlatformMoveTag);
-        }
-
-        // Движущаяся платформа везёт игрока как родитель. Пока платформа выключается
-        // (например, при перезагрузке сцены), Unity запрещает менять родителя — тогда ничего не делаем.
-        // На этапе 4 заменится на перенос скорости платформы.
-        private void AttachToPlatform(Transform platform)
-        {
-            if (transform.parent != platform && platform.gameObject.activeInHierarchy && gameObject.activeInHierarchy)
+            var collider = GetComponent<Collider2D>();
+            if (collider == null || settings == null)
             {
-                transform.SetParent(platform);
+                return;
             }
-        }
 
-        private void DetachFromPlatform(Transform platform)
-        {
-            if (transform.parent == platform && platform.gameObject.activeInHierarchy && gameObject.activeInHierarchy)
-            {
-                transform.SetParent(_homeParent);
-            }
+            Bounds bounds = collider.bounds;
+            float depth = settings.groundCheckDepth;
+            Gizmos.color = _grounded ? Color.green : Color.yellow;
+            Gizmos.DrawWireCube(
+                new Vector3(bounds.center.x, bounds.min.y - depth * 0.5f + 0.01f, 0f),
+                new Vector3(bounds.size.x * settings.groundCheckWidth, depth, 0f));
         }
     }
 }

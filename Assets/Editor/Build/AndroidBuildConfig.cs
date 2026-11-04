@@ -28,6 +28,10 @@ namespace DarknessInside.Editor.Build
         [SerializeField] private Il2CppCompilerConfiguration compilerConfiguration = Il2CppCompilerConfiguration.Release;
         [Tooltip("OptimizeSize = «Faster (smaller) builds»: быстрее сборка, меньше вес.")]
         [SerializeField] private Il2CppCodeGeneration codeGeneration = Il2CppCodeGeneration.OptimizeSize;
+        [Tooltip("Удаление неиспользуемого кода. Medium безопасен: код игры не использует рефлексию и BinaryFormatter.")]
+        [SerializeField] private ManagedStrippingLevel managedStrippingLevel = ManagedStrippingLevel.Medium;
+        [Tooltip("Не включать в сборку неиспользуемые модули движка.")]
+        [SerializeField] private bool stripEngineCode = true;
 
         [Header("Подпись")]
         [Tooltip("Подписывать своим keystore. Пароли в ассете не хранятся — введите их в Player Settings → Publishing Settings перед сборкой.")]
@@ -48,6 +52,8 @@ namespace DarknessInside.Editor.Build
             PlayerSettings.SetScriptingBackend(Target, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetIl2CppCompilerConfiguration(Target, compilerConfiguration);
             PlayerSettings.SetIl2CppCodeGeneration(Target, codeGeneration);
+            PlayerSettings.SetManagedStrippingLevel(Target, managedStrippingLevel);
+            PlayerSettings.stripEngineCode = stripEngineCode;
             PlayerSettings.Android.targetArchitectures = architectures;
             PlayerSettings.Android.useCustomKeystore = useCustomKeystore;
 

@@ -135,9 +135,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158687, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
     - target: {fileID: 407262467379158689, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
       propertyPath: m_RootOrder
@@ -293,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127292947}
   - component: {fileID: 127292948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_3 (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -325,7 +335,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1442,11 +1452,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3980266728718482149, guid: bffc5ed52b0790743a96d788ea1b4d51,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4990403634074364224, guid: bffc5ed52b0790743a96d788ea1b4d51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1686,7 +1691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089093753}
   - component: {fileID: 1089093754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_3 (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1718,7 +1723,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2138,7 +2143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437504919}
   - component: {fileID: 1437504920}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_2 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2170,7 +2175,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2216,7 +2221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1596228461}
   - component: {fileID: 1596228462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_3 (4)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2248,7 +2253,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3180,7 +3185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944689443}
   - component: {fileID: 1944689444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_3 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3212,7 +3217,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3263,9 +3268,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158686, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 407262467379158687, guid: a5f8b6b327d850e47bf3f3ab44f91941,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1d95274f33673a54498b39803efd5944, type: 2}
     - target: {fileID: 407262467379158689, guid: a5f8b6b327d850e47bf3f3ab44f91941,
         type: 3}
       propertyPath: m_RootOrder

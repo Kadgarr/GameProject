@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 393223373371795937}
   - component: {fileID: 393223373371795938}
   - component: {fileID: 3869402844934728539}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PartOfArmStick
   m_TagString: PartOfArmStick
   m_Icon: {fileID: 0}
