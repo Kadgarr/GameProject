@@ -24,42 +24,30 @@ public class ShowUpTurns : MonoBehaviour
         StartCoroutine(Cycle());
     }
 
+    // Один цикл без вложенных корутин: вложенные IEnumerator создавали мусор на каждом ходе.
     private IEnumerator Cycle()
     {
-        bool startsDown = (transform.position - posYDown).sqrMagnitude < (transform.position - posYUp).sqrMagnitude;
-        if (startsDown)
-        {
-            yield return WaitForBeat();
-            yield return Move(posYDown, posYUp);
-        }
+        int period = Mathf.Max(1, Mathf.RoundToInt(second));
+        float safeStep = Mathf.Max(step, 0.001f);
+        bool atTop = (transform.position - posYDown).sqrMagnitude >= (transform.position - posYUp).sqrMagnitude;
 
         while (true)
         {
-            yield return WaitForBeat();
-            yield return Move(posYUp, posYDown);
-            yield return WaitForBeat();
-            yield return Move(posYDown, posYUp);
-        }
-    }
+            while (Mathf.FloorToInt(Time.timeSinceLevelLoad) % period != 0)
+            {
+                yield return FixedStep;
+            }
 
-    private IEnumerator WaitForBeat()
-    {
-        int period = Mathf.Max(1, Mathf.RoundToInt(second));
-        while (Mathf.FloorToInt(Time.timeSinceLevelLoad) % period != 0)
-        {
-            yield return FixedStep;
-        }
-    }
+            Vector3 from = atTop ? posYUp : posYDown;
+            Vector3 to = atTop ? posYDown : posYUp;
+            for (float progress = 0f; progress < 1f; progress += safeStep)
+            {
+                transform.position = Vector3.Lerp(from, to, progress);
+                yield return FixedStep;
+            }
 
-    private IEnumerator Move(Vector3 from, Vector3 to)
-    {
-        float safeStep = Mathf.Max(step, 0.001f);
-        for (float progress = 0f; progress < 1f; progress += safeStep)
-        {
-            transform.position = Vector3.Lerp(from, to, progress);
-            yield return FixedStep;
+            transform.position = to;
+            atTop = !atTop;
         }
-
-        transform.position = to;
     }
 }
