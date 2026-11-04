@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>Кнопка на полу: при нажатии игроком показывает стены и меняет коллайдеры.</summary>
 public class HidingPressButton : MonoBehaviour
 {
+    private const string PlayerTag = "Player";
+
     public Sprite switchOnBut;
     public Sprite switchOffBut;
 
+    [Tooltip("Стены, которые появляются при нажатии. Пустые поля пропускаются.")]
     public GameObject Wall1;
     public GameObject Wall2;
     public GameObject Wall3;
@@ -14,21 +16,67 @@ public class HidingPressButton : MonoBehaviour
     public GameObject ColliderWall;
     public GameObject ColliderGround;
 
+    private SpriteRenderer _spriteRenderer;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (!collision.gameObject.CompareTag(PlayerTag))
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = switchOnBut;
-            ColliderWall.GetComponentInChildren<BoxCollider2D>().enabled = false;
-            ColliderGround.GetComponentInChildren<BoxCollider2D>().enabled = true;
-            Wall1.GetComponentInChildren<SpriteRenderer>().enabled = true;
-            Wall2.GetComponentInChildren<SpriteRenderer>().enabled = true;
-            Wall3.GetComponentInChildren<SpriteRenderer>().enabled = true;
-            Wall4.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            return;
         }
+
+        SetSprite(switchOnBut);
+        SetColliderEnabled(ColliderWall, false);
+        SetColliderEnabled(ColliderGround, true);
+        ShowWall(Wall1);
+        ShowWall(Wall2);
+        ShowWall(Wall3);
+        ShowWall(Wall4);
     }
+
     public void OnCollisionExit2D(Collision2D collision)
     {
-        GetComponentInChildren<SpriteRenderer>().sprite = switchOffBut;
+        SetSprite(switchOffBut);
+    }
+
+    private void SetSprite(Sprite sprite)
+    {
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.sprite = sprite;
+        }
+    }
+
+    private static void SetColliderEnabled(GameObject target, bool enabled)
+    {
+        if (target == null)
+        {
+            return;
+        }
+
+        var collider = target.GetComponentInChildren<BoxCollider2D>();
+        if (collider != null)
+        {
+            collider.enabled = enabled;
+        }
+    }
+
+    private static void ShowWall(GameObject wall)
+    {
+        if (wall == null)
+        {
+            return;
+        }
+
+        var wallRenderer = wall.GetComponentInChildren<SpriteRenderer>();
+        if (wallRenderer != null)
+        {
+            wallRenderer.enabled = true;
+        }
     }
 }

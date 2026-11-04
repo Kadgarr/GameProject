@@ -19,21 +19,37 @@ public class DoorOpen : MonoBehaviour
     public void OpenedDoor(bool state)
     {
 
-        if (state == true)
+        if (state)
         {
-            GetComponentInChildren<BoxCollider2D>().enabled = false;
-            GetComponentInChildren<SpriteRenderer>().sprite = doorOpened;
+            Open();
         }
     }
 
     public void OpenedDoorClick()
     {
-        GetComponentInChildren<BoxCollider2D>().enabled = false;
-        GetComponentInChildren<SpriteRenderer>().sprite = doorOpened;
+        Open();
+    }
+
+    private void Open()
+    {
+        var doorCollider = GetComponentInChildren<BoxCollider2D>();
+        if (doorCollider != null)
+        {
+            doorCollider.enabled = false;
+        }
+
+        var doorRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (doorRenderer != null && doorOpened != null)
+        {
+            doorRenderer.sprite = doorOpened;
+        }
     }
 
     public void OpenDoorClickUp(Button button)
     {
-        button.GetComponent<Button>().interactable = false;
+        if (button != null)
+        {
+            button.interactable = false;
+        }
     }
 }

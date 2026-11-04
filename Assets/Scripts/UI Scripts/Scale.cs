@@ -1,37 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>Шкала, которая постепенно убывает; когда опустеет — игрок погибает.</summary>
 public class Scale : MonoBehaviour
 {
     public Image fillingScale;
 
     public GameObject diePlayer;
+
+    // TODO(этап 3): убывание за кадр зависит от FPS — перевести на «в секунду» вместе с переходом на 60 FPS.
     public float filling = 0.0001f;
 
-    public DeadPlayer Активує
+    private bool _expired;
+
+    private void Update()
     {
-        get => default;
-        set
+        if (_expired)
         {
+            return;
         }
-    }
 
-    private void Start()
-    {
-        
-    }
-
-    void Update()
-    {
         fillingScale.fillAmount -= filling;
-
-        if (fillingScale.fillAmount == 0)
+        if (fillingScale.fillAmount > 0f)
         {
-            DeadPlayer dead = diePlayer.GetComponent<DeadPlayer>();
-            dead.StatePlayer(true);
-            this.GetComponent<Die>().Check = true;
+            return;
+        }
+
+        _expired = true;
+        DeadPlayer deadPlayer = diePlayer != null ? diePlayer.GetComponent<DeadPlayer>() : null;
+        var die = GetComponent<Die>();
+        if (die != null)
+        {
+            die.KillPlayer(deadPlayer);
+        }
+        else if (deadPlayer != null)
+        {
+            deadPlayer.Kill(1f);
         }
     }
 }

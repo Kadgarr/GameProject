@@ -17,8 +17,12 @@ public class AccelerContr : MonoBehaviour
     private Rigidbody2D Rbody;
     private SpriteRenderer Sprite;
 
+    // Родитель игрока в сцене (объект Player): сюда возвращаемся, сходя с движущейся платформы.
+    private Transform _homeParent;
+
     void Start()
     {
+        _homeParent = transform.parent;
         Rbody = GetComponent<Rigidbody2D>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
         Anim = GetComponent<Animator>();
@@ -87,12 +91,12 @@ public class AccelerContr : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Ground"))
+        if ((collision.gameObject.CompareTag("Ground")))
         {
             Anim.SetBool("IsJump", false);
             IsGround = true;
         }
-        if (collision.gameObject.tag == "PlatformMove")
+        if (collision.gameObject.CompareTag("PlatformMove"))
         {
             Anim.SetBool("IsJump", false);
             IsGround = true;
@@ -101,27 +105,45 @@ public class AccelerContr : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Ground"))
+        if ((collision.gameObject.CompareTag("Ground")))
         {
             IsGround = false;
         }
-        if (collision.gameObject.tag == "PlatformMove")
+        if (collision.gameObject.CompareTag("PlatformMove"))
         {
             IsGround = false;
-            transform.SetParent(null);
+            DetachFromPlatform(collision.transform);
         }
     }  
 
+    // Пока платформа выключается (например, при перезагрузке сцены), Unity запрещает менять родителя —
+    // в этот момент ничего не делаем. SetParent вызывается только при реальной смене платформы.
+    private void AttachToPlatform(Transform platform)
+    {
+        if (transform.parent != platform && platform.gameObject.activeInHierarchy && gameObject.activeInHierarchy)
+        {
+            transform.SetParent(platform);
+        }
+    }
+
+    private void DetachFromPlatform(Transform platform)
+    {
+        if (transform.parent == platform && platform.gameObject.activeInHierarchy && gameObject.activeInHierarchy)
+        {
+            transform.SetParent(_homeParent);
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             IsGround = true;
         }
-        if (collision.gameObject.tag == "PlatformMove")
+        if (collision.gameObject.CompareTag("PlatformMove"))
         {
             IsGround = true;
-            transform.SetParent(collision.transform);
+            AttachToPlatform(collision.transform);
         }
     }
 

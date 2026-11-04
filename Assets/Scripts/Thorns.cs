@@ -1,37 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>Шипы: при касании убивают игрока, уровень перезапускается через timer секунд.</summary>
 public class Thorns : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public int IndexScene;
-    public float timer;
-    public bool Check;
-    public GameObject Player;
-    private void Update()
-    {
-        if (Check == true)
-        {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            if (timer <= 0)
-            {
-                timer = 2;
-                SceneManager.LoadScene(IndexScene); 
-            }
-        }
-    }
+    private const string PlayerTag = "Player";
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public float timer;
+
+    [Tooltip("Необязательно: игрок определяется по столкновению автоматически.")]
+    public GameObject Player;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.tag == "Player")
+        if (!other.CompareTag(PlayerTag))
         {
-            Check = true;
-            Player.GetComponentInChildren<DeadPlayer>().StatePlayer(true);
+            return;
+        }
+
+        var deadPlayer = other.GetComponentInParent<DeadPlayer>();
+        if (deadPlayer == null && Player != null)
+        {
+            deadPlayer = Player.GetComponentInChildren<DeadPlayer>();
+        }
+
+        if (deadPlayer != null)
+        {
+            deadPlayer.Kill(timer);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

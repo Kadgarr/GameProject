@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Globalization;
 
-
+/// <summary>
+/// Кнопка быстрых нажатий: каждое нажатие добавляет к кругу заполнения, круг постепенно убывает.
+/// Когда круг заполнен — рычаг включается, дверь открывается, срабатывает событие Completed.
+/// </summary>
 public class FastClick : MonoBehaviour
 {
     public Image LoadingCircle;
@@ -18,39 +18,88 @@ public class FastClick : MonoBehaviour
 
     public SpriteRenderer ArmSprite;
 
-    private float minus = 0.05f;
+    [Tooltip("Сколько добавляет одно нажатие (0..1).")]
+    [SerializeField] private float fillPerClick = 0.3f;
+    [Tooltip("Насколько круг убывает за шаг (каждый второй кадр физики).")]
+    [SerializeField] private float decayPerStep = 0.05f;
 
-    public bool checkForDesrtItem = false;
-   
-    void FixedUpdate()
+    private bool _completed;
+
+    /// <summary>Круг заполнен, постройка завершена.</summary>
+    public event Action Completed;
+
+    private void FixedUpdate()
     {
-        if (LoadingCircle.fillAmount > 0)
+        if (_completed)
         {
-            if ( Time.frameCount % 2 ==0)
-            {
-                LoadingCircle.fillAmount -= minus;
-            }
+            return;
         }
 
-        if (LoadingCircle.fillAmount == 1)
+        // Только убывание. Заполнение проверяется в момент нажатия, иначе последнее нажатие
+        // могло «съедаться» убыванием в том же шаге физики.
+        if (LoadingCircle.fillAmount > 0f && Time.frameCount % 2 == 0)
         {
-            checkForDesrtItem = true;
-            ComplitedCircle.enabled = true;
-            ClickButton.image = ComplitedCircle;
-            minus = 0;
-            ArmSprite.sprite = ArmSpriteOn;
-            ObjectDoor.GetComponentInChildren<DoorOpen>().OpenedDoor(true);
-            ClickButton.interactable = false;
+            LoadingCircle.fillAmount -= decayPerStep;
         }
-        if (checkForDesrtItem)
-            canvasBut.gameObject.SetActive(false);
-
-
     }
-
 
     public void ButtonFillClick()
     {
-        LoadingCircle.fillAmount += 0.3f;
+        if (_completed)
+        {
+            return;
+        }
+
+        LoadingCircle.fillAmount += fillPerClick;
+        if (LoadingCircle.fillAmount >= 1f)
+        {
+            Complete();
+        }
+    }
+
+    private void Complete()
+    {
+        _completed = true;
+
+        if (ComplitedCircle != null)
+        {
+            ComplitedCircle.enabled = true;
+        }
+
+        if (ClickButton != null)
+        {
+            if (ComplitedCircle != null)
+            {
+                ClickButton.image = ComplitedCircle;
+            }
+
+            ClickButton.interactable = false;
+        }
+
+        if (ArmSprite != null && ArmSpriteOn != null)
+        {
+            ArmSprite.sprite = ArmSpriteOn;
+        }
+
+        DoorOpen door = ObjectDoor != null ? ObjectDoor.GetComponentInChildren<DoorOpen>() : null;
+        if (door != null)
+        {
+            door.OpenedDoor(true);
+        }
+
+        // Канвас кнопки: если не задан явно — прячем ближайший родительский Canvas.
+        GameObject buttonCanvas = canvasBut;
+        if (buttonCanvas == null)
+        {
+            Canvas parentCanvas = GetComponentInParent<Canvas>();
+            buttonCanvas = parentCanvas != null ? parentCanvas.rootCanvas.gameObject : null;
+        }
+
+        if (buttonCanvas != null)
+        {
+            buttonCanvas.SetActive(false);
+        }
+
+        Completed?.Invoke();
     }
 }

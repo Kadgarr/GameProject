@@ -32,42 +32,13 @@ public class EscapeMenu : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-     
-          /*  if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }*/
-        
-    }
-   /* void Resume()
-    {
-        pauseMenuObject.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-    }*/
-
     public void Pause()
     {
         pauseMenuObject.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        GetComponent<AudioSource>().Play();
-        ButtonUp.GetComponent<Button>().enabled = false;
-        ButtonLeft.GetComponent<Button>().enabled = false;
-        ButtonRight.GetComponent<Button>().enabled = false;
-        ButtonPause.GetComponent<Button>().enabled = false;
-
-        this.GetComponentInParent<AudioSource>().Play();
-        ButtonUp.GetComponent<EventTrigger>().enabled = false;
-        ButtonLeft.GetComponent<EventTrigger>().enabled = false;
-        ButtonRight.GetComponent<EventTrigger>().enabled = false;
+        PlayClick();
+        SetControlsEnabled(false);
     }
 
     public void Continue()
@@ -75,21 +46,50 @@ public class EscapeMenu : MonoBehaviour
         pauseMenuObject.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        this.GetComponentInParent<AudioSource>().Play();
-        ButtonUp.GetComponent<Button>().enabled = true;
-        ButtonLeft.GetComponent<Button>().enabled = true;
-        ButtonRight.GetComponent<Button>().enabled = true;
-        ButtonPause.GetComponent<Button>().enabled = true;
+        PlayClick();
+        SetControlsEnabled(true);
+    }
 
+    private void PlayClick()
+    {
+        var click = GetComponentInParent<AudioSource>();
+        if (click != null)
+        {
+            click.Play();
+        }
+    }
 
-        ButtonUp.GetComponent<EventTrigger>().enabled = true;
-        ButtonLeft.GetComponent<EventTrigger>().enabled = true;
-        ButtonRight.GetComponent<EventTrigger>().enabled = true;
+    /// <summary>
+    /// Включает/выключает обработку нажатий на кнопках управления (Button, EventTrigger, ButtonClick и т.п.).
+    /// Пустые ссылки пропускаются — на некоторых уровнях часть кнопок не задана.
+    /// </summary>
+    private void SetControlsEnabled(bool enabled)
+    {
+        SetButtonEnabled(ButtonUp, enabled);
+        SetButtonEnabled(ButtonLeft, enabled);
+        SetButtonEnabled(ButtonRight, enabled);
+        SetButtonEnabled(ButtonPause, enabled);
+    }
+
+    private static void SetButtonEnabled(Button button, bool enabled)
+    {
+        if (button == null)
+        {
+            return;
+        }
+
+        foreach (Behaviour behaviour in button.GetComponents<Behaviour>())
+        {
+            if (behaviour is Selectable || behaviour is IEventSystemHandler)
+            {
+                behaviour.enabled = enabled;
+            }
+        }
     }
 
     public void Menu()
     {
-        this.GetComponentInParent<AudioSource>().Play();
+        PlayClick();
         Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("SceneMenu");
         GameIsPaused = false;
@@ -98,12 +98,18 @@ public class EscapeMenu : MonoBehaviour
 
     public void HintQuestionButton()
     {
-        hintCanv.gameObject.SetActive(true);
+        if (hintCanv != null)
+        {
+            hintCanv.SetActive(true);
+        }
     }
 
     public void HintExitButton()
     {
-        hintCanv.gameObject.SetActive(false);
+        if (hintCanv != null)
+        {
+            hintCanv.SetActive(false);
+        }
     }
 
     public void Quit()
