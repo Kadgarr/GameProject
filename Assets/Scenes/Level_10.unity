@@ -1736,7 +1736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd305b43dbb3e24bb0b4b5c9564e53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateForTimer: 0
   SpriteDead: {fileID: 21300000, guid: 4e690e1e1cd6a1b4d88528c7dcca6b3d, type: 3}
   ButRight: {fileID: 1243029205}
   ButLeft: {fileID: 1243029204}
@@ -5615,7 +5614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
-  Check: 0
   Player: {fileID: 428867960}
 --- !u!114 &1355421708 stripped
 MonoBehaviour:
@@ -6576,12 +6574,12 @@ PrefabInstance:
     - target: {fileID: 6114023141065624429, guid: 3aebebca2dc6e424492f4e8e1daa02e2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1816.5
+      value: 616
       objectReference: {fileID: 0}
     - target: {fileID: 6114023141065624429, guid: 3aebebca2dc6e424492f4e8e1daa02e2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 9.200012
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 7961062866300817891, guid: 3aebebca2dc6e424492f4e8e1daa02e2,
         type: 3}
