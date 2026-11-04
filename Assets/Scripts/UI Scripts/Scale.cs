@@ -45,7 +45,7 @@ public class Scale : MonoBehaviour
         }
         else if (_player != null)
         {
-            _player.Kill(1f);
+            _player.Kill(1f, "timer");
         }
     }
 }

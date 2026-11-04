@@ -1955,6 +1955,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1311755443, guid: 9b8a2d351ee0a1f4f9175b0b04081e1a, type: 3}
+      propertyPath: causeId
+      value: Fall
+      objectReference: {fileID: 0}
     - target: {fileID: 8877796713192170922, guid: 9b8a2d351ee0a1f4f9175b0b04081e1a,
         type: 3}
       propertyPath: m_RootOrder
@@ -4906,6 +4910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 1
+  causeId: 
 --- !u!1 &1484849781
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,17 @@ public class DeadPlayer : MonoBehaviour
 
     public bool IsDead => _isDead;
 
+    /// <summary>Что убило игрока (для аналитики): thorns, fall, falling_object, timer…</summary>
+    public string Cause { get; private set; } = UnknownCause;
+
+    public const string UnknownCause = "unknown";
+
     public void Kill(float restartDelay)
+    {
+        Kill(restartDelay, UnknownCause);
+    }
+
+    public void Kill(float restartDelay, string cause)
     {
         if (_isDead)
         {
@@ -27,6 +37,7 @@ public class DeadPlayer : MonoBehaviour
         }
 
         _isDead = true;
+        Cause = string.IsNullOrEmpty(cause) ? UnknownCause : cause;
         ShowDeath();
 
         if (Died != null)

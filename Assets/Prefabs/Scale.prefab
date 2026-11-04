@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 2
+  causeId: timer
 --- !u!1 &7508118696173270336
 GameObject:
   m_ObjectHideFlags: 0

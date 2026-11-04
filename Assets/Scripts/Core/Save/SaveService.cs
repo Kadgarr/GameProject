@@ -36,6 +36,9 @@ namespace DarknessInside.Core.Save
 
         public event Action<string> LanguageChanged;
 
+        /// <summary>Игрок разрешил (true) или запретил (false) аналитику.</summary>
+        public event Action<bool> AnalyticsConsentChanged;
+
         public int LastCompletedLevel => _data.lastCompletedLevel;
 
         public bool HasProgress => _data.lastCompletedLevel > 0;
@@ -45,6 +48,8 @@ namespace DarknessInside.Core.Save
         public bool SoundOn => _data.soundOn;
 
         public string Language => _data.language;
+
+        public ConsentState AnalyticsConsent => (ConsentState)_data.analyticsConsent;
 
         /// <summary>
         /// Подменить сервис (тесты, удаление сохранения из меню редактора). null — заново прочитать файл.
@@ -59,6 +64,7 @@ namespace DarknessInside.Core.Save
                 next.MusicChanged += _instance.MusicChanged;
                 next.SoundChanged += _instance.SoundChanged;
                 next.LanguageChanged += _instance.LanguageChanged;
+                next.AnalyticsConsentChanged += _instance.AnalyticsConsentChanged;
             }
 
             _instance = next;
@@ -122,6 +128,19 @@ namespace DarknessInside.Core.Save
             _data.language = language;
             Flush();
             LanguageChanged?.Invoke(language);
+        }
+
+        public void SetAnalyticsConsent(bool granted)
+        {
+            int value = (int)(granted ? ConsentState.Granted : ConsentState.Denied);
+            if (_data.analyticsConsent == value)
+            {
+                return;
+            }
+
+            _data.analyticsConsent = value;
+            Flush();
+            AnalyticsConsentChanged?.Invoke(granted);
         }
 
         private static void Migrate(SaveData data)

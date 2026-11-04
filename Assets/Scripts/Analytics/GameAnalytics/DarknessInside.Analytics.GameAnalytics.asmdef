@@ -1,0 +1,17 @@
+{
+    "name": "DarknessInside.Analytics.GameAnalytics",
+    "rootNamespace": "DarknessInside.Analytics.GameAnalyticsAdapter",
+    "references": [
+        "DarknessInside.Runtime",
+        "GameAnalyticsSDK"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

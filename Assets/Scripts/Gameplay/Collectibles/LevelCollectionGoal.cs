@@ -58,6 +58,7 @@ namespace DarknessInside.Gameplay.Collectibles
             }
 
             ItemCollected?.Invoke(item);
+            Levels.LevelFlow.ReportItemCollected(item.AnalyticsId);
 
             if (HasAll(requiredItems))
             {

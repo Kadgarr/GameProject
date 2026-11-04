@@ -163,6 +163,26 @@
     {
       "key": "push_button",
       "value": "PUSH!!!"
+    },
+    {
+      "key": "analytics_consent",
+      "value": "Help us make the game better. Allow sending gameplay statistics (level progress, deaths, device model) to GameAnalytics? You can change this in Settings."
+    },
+    {
+      "key": "analytics_accept",
+      "value": "Allow"
+    },
+    {
+      "key": "analytics_decline",
+      "value": "No"
+    },
+    {
+      "key": "analytics_on",
+      "value": "Statistics: on"
+    },
+    {
+      "key": "analytics_off",
+      "value": "Statistics: off"
     }
   ]
 }

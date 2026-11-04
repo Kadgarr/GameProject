@@ -163,6 +163,26 @@
     {
       "key": "push_button",
       "value": "ТИСНИ!!!"
+    },
+    {
+      "key": "analytics_consent",
+      "value": "Допоможіть зробити гру кращою. Дозволити надсилати статистику гри (проходження рівнів, смерті, модель пристрою) до сервісу GameAnalytics? Це можна змінити в налаштуваннях."
+    },
+    {
+      "key": "analytics_accept",
+      "value": "Дозволити"
+    },
+    {
+      "key": "analytics_decline",
+      "value": "Ні"
+    },
+    {
+      "key": "analytics_on",
+      "value": "Статистика: увімк"
+    },
+    {
+      "key": "analytics_off",
+      "value": "Статистика: вимк"
     }
   ]
 }

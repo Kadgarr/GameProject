@@ -164,6 +164,26 @@
     {
       "key": "push_button",
       "value": "ЖМИ!!!"
+    },
+    {
+      "key": "analytics_consent",
+      "value": "Помогите сделать игру лучше. Разрешить отправку статистики игры (прохождение уровней, смерти, модель устройства) в сервис GameAnalytics? Это можно изменить в настройках."
+    },
+    {
+      "key": "analytics_accept",
+      "value": "Разрешить"
+    },
+    {
+      "key": "analytics_decline",
+      "value": "Нет"
+    },
+    {
+      "key": "analytics_on",
+      "value": "Статистика: вкл"
+    },
+    {
+      "key": "analytics_off",
+      "value": "Статистика: выкл"
     }
   ]
 }

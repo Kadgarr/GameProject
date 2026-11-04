@@ -63,6 +63,7 @@ public class EscapeMenu : MonoBehaviour
     public void HintQuestionButton()
     {
         SetActive(hintCanv, true);
+        LevelFlow.ReportHintOpened();
     }
 
     public void HintExitButton()

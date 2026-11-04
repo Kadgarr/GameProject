@@ -64,6 +64,11 @@ public class Riddle2Code : MonoBehaviour
         if (difference == TargetDifference && _door != null)
         {
             _door.OpenedDoor(true);
+            if (!_sum.solved)
+            {
+                _sum.solved = true;
+                DarknessInside.Gameplay.Levels.LevelFlow.ReportRiddleAttempt(true);
+            }
         }
     }
 

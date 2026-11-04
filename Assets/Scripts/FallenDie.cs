@@ -13,6 +13,8 @@ public class FallenDie : Hazard
 
     public float GravityScale;
 
+    protected override string DefaultCause => "falling_object";
+
     private bool _landed;
     private BoxCollider2D[] _childColliders;
     private Rigidbody2D[] _childBodies;

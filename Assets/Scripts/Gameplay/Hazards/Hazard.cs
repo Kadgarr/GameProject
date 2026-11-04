@@ -13,7 +13,16 @@ namespace DarknessInside.Gameplay.Hazards
         [Tooltip("Через сколько секунд после смерти перезапустится уровень.")]
         [SerializeField] protected float timer;
 
+        [Tooltip("Причина смерти для аналитики. Пусто — по типу ловушки.")]
+        [SerializeField] private string causeId;
+
         public float RestartDelay => timer;
+
+        /// <summary>Причина смерти для аналитики.</summary>
+        public string Cause => string.IsNullOrEmpty(causeId) ? DefaultCause : causeId;
+
+        /// <summary>Причина по умолчанию для этого типа ловушки.</summary>
+        protected abstract string DefaultCause { get; }
 
         /// <summary>Убить игрока, если target — игрок. Возвращает true, если убили.</summary>
         protected bool TryKill(GameObject target)
@@ -30,7 +39,7 @@ namespace DarknessInside.Gameplay.Hazards
                 return false;
             }
 
-            player.Kill(timer);
+            player.Kill(timer, Cause);
             return true;
         }
 
@@ -39,7 +48,7 @@ namespace DarknessInside.Gameplay.Hazards
         {
             if (player != null)
             {
-                player.Kill(timer);
+                player.Kill(timer, Cause);
             }
         }
     }

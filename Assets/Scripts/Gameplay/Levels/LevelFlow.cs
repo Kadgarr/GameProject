@@ -23,11 +23,28 @@ namespace DarknessInside.Gameplay.Levels
         /// <summary>Уровень начался. Аргумент — номер уровня (0 — сцена не из списка уровней).</summary>
         public static event Action<int> LevelStarted;
 
-        /// <summary>Игрок погиб на уровне.</summary>
-        public static event Action<int> PlayerDied;
+        /// <summary>Игрок погиб на уровне. Аргументы — номер уровня и причина смерти.</summary>
+        public static event Action<int, string> PlayerDied;
 
         /// <summary>Уровень пройден.</summary>
         public static event Action<int> LevelCompleted;
+
+        /// <summary>Игрок вышел с уровня в меню.</summary>
+        public static event Action<int> LevelQuit;
+
+        /// <summary>Попытка решить загадку: номер уровня и успех.</summary>
+        public static event Action<int, bool> RiddleAttempted;
+
+        /// <summary>Подобран предмет: номер уровня и id предмета.</summary>
+        public static event Action<int, string> ItemCollected;
+
+        /// <summary>Открыта подсказка уровня.</summary>
+        public static event Action<int> HintOpened;
+
+        private static LevelFlow _current;
+
+        /// <summary>Номер текущего уровня (0 — не уровень).</summary>
+        public static int CurrentLevel => _current != null ? _current.LevelNumber : 0;
 
         public int LevelNumber { get; private set; }
 
@@ -36,6 +53,15 @@ namespace DarknessInside.Gameplay.Levels
             // Уровень всегда начинается без паузы (например, после выхода в меню с паузы).
             GamePause.Set(false);
             LevelNumber = levels != null ? levels.GetLevelNumber(gameObject.scene.name) : 0;
+            _current = this;
+        }
+
+        private void OnDestroy()
+        {
+            if (_current == this)
+            {
+                _current = null;
+            }
         }
 
         private void OnEnable()
@@ -82,12 +108,35 @@ namespace DarknessInside.Gameplay.Levels
 
         public void ExitToMenu()
         {
+            if (!_transitioning)
+            {
+                LevelQuit?.Invoke(LevelNumber);
+            }
+
             LoadScene(levels.MenuScene, 0f);
+        }
+
+        /// <summary>Сообщить о попытке решить загадку на текущем уровне.</summary>
+        public static void ReportRiddleAttempt(bool success)
+        {
+            RiddleAttempted?.Invoke(CurrentLevel, success);
+        }
+
+        /// <summary>Сообщить о подобранном предмете на текущем уровне.</summary>
+        public static void ReportItemCollected(string itemId)
+        {
+            ItemCollected?.Invoke(CurrentLevel, itemId);
+        }
+
+        /// <summary>Сообщить, что игрок открыл подсказку.</summary>
+        public static void ReportHintOpened()
+        {
+            HintOpened?.Invoke(CurrentLevel);
         }
 
         private void OnPlayerDied(float restartDelay)
         {
-            PlayerDied?.Invoke(LevelNumber);
+            PlayerDied?.Invoke(LevelNumber, player != null ? player.Cause : DeadPlayer.UnknownCause);
             Restart(restartDelay);
         }
 
@@ -118,6 +167,11 @@ namespace DarknessInside.Gameplay.Levels
             LevelStarted = null;
             PlayerDied = null;
             LevelCompleted = null;
+            LevelQuit = null;
+            RiddleAttempted = null;
+            ItemCollected = null;
+            HintOpened = null;
+            _current = null;
         }
     }
 }

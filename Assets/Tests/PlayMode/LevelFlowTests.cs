@@ -50,7 +50,7 @@ namespace DarknessInside.Tests
             yield return LoadScene("Level_8");
 
             int diedOn = -1;
-            System.Action<int> onDied = level => diedOn = level;
+            System.Action<int, string> onDied = (level, cause) => diedOn = level;
             LevelFlow.PlayerDied += onDied;
             try
             {

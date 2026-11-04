@@ -21,5 +21,15 @@ namespace DarknessInside.Core.Save
 
         /// <summary>Код языка (ru_RU, ua_UA, en_US). Пусто — выбрать по языку системы.</summary>
         public string language = string.Empty;
+
+        /// <summary>Согласие на аналитику: 0 — не спрашивали, 1 — разрешено, 2 — запрещено (<see cref="ConsentState"/>).</summary>
+        public int analyticsConsent;
+    }
+
+    public enum ConsentState
+    {
+        Unknown = 0,
+        Granted = 1,
+        Denied = 2,
     }
 }

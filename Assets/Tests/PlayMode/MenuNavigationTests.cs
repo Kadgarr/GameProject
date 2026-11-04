@@ -18,9 +18,34 @@ namespace DarknessInside.Tests
         private MenuNavigator _navigator;
         private MenuScreen[] _screens;
 
+        private sealed class MemoryStorage : DarknessInside.Core.Save.ISaveStorage
+        {
+            private DarknessInside.Core.Save.SaveData _data;
+
+            public bool TryLoad(out DarknessInside.Core.Save.SaveData data)
+            {
+                data = _data;
+                return data != null;
+            }
+
+            public void Save(DarknessInside.Core.Save.SaveData data) => _data = data;
+
+            public void Delete() => _data = null;
+        }
+
+        [UnityTearDown]
+        public IEnumerator RestoreSave()
+        {
+            DarknessInside.Core.Save.SaveService.SetInstance(null);
+            yield return null;
+        }
+
         [UnitySetUp]
         public IEnumerator LoadMenu()
         {
+            // Окно согласия на аналитику уже отвечено — тестируем только экраны меню.
+            DarknessInside.Core.Save.SaveService.SetInstance(new DarknessInside.Core.Save.SaveService(new MemoryStorage()));
+            DarknessInside.Core.Save.SaveService.Instance.SetAnalyticsConsent(false);
             yield return SceneManager.LoadSceneAsync("SceneMenu", LoadSceneMode.Single);
             yield return null;
             _navigator = Object.FindFirstObjectByType<MenuNavigator>();

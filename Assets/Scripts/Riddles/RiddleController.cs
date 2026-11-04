@@ -26,6 +26,11 @@ public class RiddleController : MonoBehaviour
     public void ButtonController2(string digit)
     {
         _entered += digit;
+        if (_entered.Length == Solution.Length)
+        {
+            DarknessInside.Gameplay.Levels.LevelFlow.ReportRiddleAttempt(_entered == Solution);
+        }
+
         if (_entered == Solution && _door != null)
         {
             _door.OpenedDoor(true);
