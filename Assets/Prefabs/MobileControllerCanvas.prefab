@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 8310015413954135538}
   - component: {fileID: 8310015413954135541}
   - component: {fileID: 6953455842132104264}
+  - component: {fileID: 6281652381374900457}
   m_Layer: 5
   m_Name: ButtonUp
   m_TagString: Untagged
@@ -738,6 +739,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 8397205556291292964}
   action: 2
+--- !u!114 &6281652381374900457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310015413954135543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c816c5ce14e440d45bd0a8b618638e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 200000007700000011010000
+  hideOnDesktopWeb: 1
 --- !u!1 &8310015414017524602
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +899,7 @@ GameObject:
   - component: {fileID: 8310015414446426409}
   - component: {fileID: 8310015414446426408}
   - component: {fileID: 2217895629848788269}
+  - component: {fileID: 7090777456745378831}
   m_Layer: 5
   m_Name: ButtonLeft
   m_TagString: Untagged
@@ -1007,6 +1023,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 8397205556291292964}
   action: 0
+--- !u!114 &7090777456745378831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310015414446426410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c816c5ce14e440d45bd0a8b618638e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 6100000014010000
+  hideOnDesktopWeb: 1
 --- !u!1 &8310015414638838138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1188,7 @@ GameObject:
   - component: {fileID: 8310015414703213892}
   - component: {fileID: 8310015414703213895}
   - component: {fileID: 4346596474062637623}
+  - component: {fileID: 5651851257138197394}
   m_Layer: 5
   m_Name: ButtonRight
   m_TagString: Untagged
@@ -1281,6 +1312,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 8397205556291292964}
   action: 1
+--- !u!114 &5651851257138197394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310015414703213897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c816c5ce14e440d45bd0a8b618638e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 6400000013010000
+  hideOnDesktopWeb: 1
 --- !u!1 &8310015414733337719
 GameObject:
   m_ObjectHideFlags: 0

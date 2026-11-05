@@ -15,8 +15,10 @@ MonoBehaviour:
   developmentBuild: 0
   connectProfiler: 0
   buildAppBundle: 1
-  outputPath: Builds/Android/DarknessInside
+  outputPath: Builds/Android/GrayToBright
   architectures: 3
   compilerConfiguration: 1
   codeGeneration: 0
+  managedStrippingLevel: 2
+  stripEngineCode: 1
   useCustomKeystore: 1

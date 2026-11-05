@@ -13,5 +13,8 @@ namespace DarknessInside.Analytics
         /// null — сервис не настроен для этой платформы.
         /// </summary>
         public abstract IAnalyticsService Create(string userId);
+
+        /// <summary>Настроен ли сервис для текущей платформы (есть ключи и т. п.). От этого зависит, спрашивать ли согласие.</summary>
+        public virtual bool IsAvailable => true;
     }
 }

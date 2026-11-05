@@ -40,6 +40,9 @@ namespace DarknessInside.Analytics.GameAnalyticsAdapter
             return new GameAnalyticsService();
         }
 
+        /// <summary>В редакторе считаем доступным, чтобы проверять окно согласия; в сборке — только при ключах для платформы.</summary>
+        public override bool IsAvailable => Application.isEditor || IsConfigured();
+
         private static bool IsConfigured()
         {
             var settings = Resources.Load<Settings>(SettingsPath);

@@ -38,7 +38,12 @@ namespace DarknessInside.Analytics
         private float _runStart;
         private float _attemptStart;
 
+        private bool _hasRemoteServices;
+
         public static AnalyticsReporter Instance { get; private set; }
+
+        /// <summary>Есть ли на этой платформе сервис аналитики. Если нет — согласие не спрашиваем и настройки статистики прячем.</summary>
+        public static bool IsAvailable => Instance != null && Instance._hasRemoteServices;
 
         private bool CanSendRemote => !Application.isEditor || sendFromEditor;
 
@@ -52,6 +57,14 @@ namespace DarknessInside.Analytics
 
             _all.Add(_local);
             _all.Add(_remote);
+
+            for (int i = 0; i < providers.Length; i++)
+            {
+                if (providers[i] != null && providers[i].IsAvailable)
+                {
+                    _hasRemoteServices = true;
+                }
+            }
         }
 
         private void OnEnable()

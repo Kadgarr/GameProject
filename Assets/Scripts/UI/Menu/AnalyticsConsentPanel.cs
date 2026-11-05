@@ -25,7 +25,7 @@ namespace DarknessInside.UI.Menu
 
         private void Start()
         {
-            SetVisible(SaveService.Instance.AnalyticsConsent == ConsentState.Unknown);
+            SetVisible(SaveService.Instance.AnalyticsConsent == ConsentState.Unknown && DarknessInside.Analytics.AnalyticsReporter.IsAvailable);
         }
 
         /// <summary>Кнопка «Разрешить».</summary>
