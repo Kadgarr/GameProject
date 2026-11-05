@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ace20a79c86e745b7b2bf2e6a6700b, type: 3}
   m_Name: AndroidTest
   m_EditorClassIdentifier: 
-  developmentBuild: 1
-  connectProfiler: 1
+  developmentBuild: 0
+  connectProfiler: 0
   buildAppBundle: 0
   outputPath: Builds/Android/GrayToBright_Test
   architectures: 2

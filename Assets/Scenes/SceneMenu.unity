@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5bb4ce02f347244ad3b98b7dfd11ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  links: {fileID: 0}
+  links: {fileID: 11400000, guid: 585fba19fad1d7d49b908c8d359fa6d4, type: 2}
 --- !u!114 &269767030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11878,7 +11878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5bb4ce02f347244ad3b98b7dfd11ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  links: {fileID: 0}
+  links: {fileID: 11400000, guid: 585fba19fad1d7d49b908c8d359fa6d4, type: 2}
 --- !u!114 &1962756250
 MonoBehaviour:
   m_ObjectHideFlags: 0
