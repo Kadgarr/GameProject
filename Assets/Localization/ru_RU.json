@@ -188,6 +188,14 @@
     {
       "key": "privacy_policy",
       "value": "Политика конфиденциальности"
+    },
+    {
+      "key": "analytics_id",
+      "value": "Ваш ID: {0}"
+    },
+    {
+      "key": "analytics_id_copied",
+      "value": "ID скопирован"
     }
   ]
 }

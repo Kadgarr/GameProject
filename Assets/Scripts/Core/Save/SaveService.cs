@@ -52,6 +52,21 @@ namespace DarknessInside.Core.Save
         public ConsentState AnalyticsConsent => (ConsentState)_data.analyticsConsent;
 
         /// <summary>
+        /// ID игрока для аналитики: создаётся один раз и хранится в сохранении. Его же видит игрок в настройках,
+        /// поэтому запрос на удаление данных можно найти в сервисе аналитики.
+        /// </summary>
+        public string GetOrCreateAnalyticsUserId()
+        {
+            if (string.IsNullOrEmpty(_data.analyticsUserId))
+            {
+                _data.analyticsUserId = Guid.NewGuid().ToString();
+                Flush();
+            }
+
+            return _data.analyticsUserId;
+        }
+
+        /// <summary>
         /// Подменить сервис (тесты, удаление сохранения из меню редактора). null — заново прочитать файл.
         /// Подписчики старого сервиса переходят к новому, чтобы долгоживущие объекты (Core) не потеряли события.
         /// </summary>
@@ -154,6 +169,11 @@ namespace DarknessInside.Core.Save
             if (data.language == null)
             {
                 data.language = string.Empty;
+            }
+
+            if (data.analyticsUserId == null)
+            {
+                data.analyticsUserId = string.Empty;
             }
         }
 

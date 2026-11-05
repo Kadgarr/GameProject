@@ -16,7 +16,7 @@ namespace DarknessInside.Analytics.GameAnalyticsAdapter
         [Tooltip("Префаб с компонентом GameAnalytics (SDK требует такой объект в сцене).")]
         [SerializeField] private GameObject gameAnalyticsPrefab;
 
-        public override IAnalyticsService Create()
+        public override IAnalyticsService Create(string userId)
         {
             if (!IsConfigured())
             {
@@ -28,6 +28,12 @@ namespace DarknessInside.Analytics.GameAnalyticsAdapter
             if (gameAnalyticsPrefab != null && Object.FindFirstObjectByType<GA>() == null)
             {
                 Object.Instantiate(gameAnalyticsPrefab).name = gameAnalyticsPrefab.name;
+            }
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                // Свой ID вместо случайного ID SDK: игрок видит его в настройках и может прислать для удаления данных.
+                GA.SetCustomId(userId);
             }
 
             GA.Initialize();

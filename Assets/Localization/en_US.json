@@ -187,6 +187,14 @@
     {
       "key": "privacy_policy",
       "value": "Privacy Policy"
+    },
+    {
+      "key": "analytics_id",
+      "value": "Your ID: {0}"
+    },
+    {
+      "key": "analytics_id_copied",
+      "value": "ID copied"
     }
   ]
 }

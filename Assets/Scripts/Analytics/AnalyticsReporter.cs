@@ -113,9 +113,10 @@ namespace DarknessInside.Analytics
             if (granted && !_remoteCreated && CanSendRemote)
             {
                 _remoteCreated = true;
+                string userId = SaveService.Instance.GetOrCreateAnalyticsUserId();
                 for (int i = 0; i < providers.Length; i++)
                 {
-                    IAnalyticsService service = providers[i] != null ? providers[i].Create() : null;
+                    IAnalyticsService service = providers[i] != null ? providers[i].Create(userId) : null;
                     _remote.Add(service);
                 }
             }

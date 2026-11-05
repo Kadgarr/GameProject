@@ -24,6 +24,9 @@ namespace DarknessInside.Core.Save
 
         /// <summary>Согласие на аналитику: 0 — не спрашивали, 1 — разрешено, 2 — запрещено (<see cref="ConsentState"/>).</summary>
         public int analyticsConsent;
+
+        /// <summary>Случайный ID игрока для аналитики. Показывается в настройках, чтобы по нему можно было запросить удаление данных.</summary>
+        public string analyticsUserId = string.Empty;
     }
 
     public enum ConsentState

@@ -8,7 +8,10 @@ namespace DarknessInside.Analytics
     /// </summary>
     public abstract class AnalyticsServiceFactory : ScriptableObject
     {
-        /// <summary>Создать и инициализировать сервис. null — сервис не настроен для этой платформы.</summary>
-        public abstract IAnalyticsService Create();
+        /// <summary>
+        /// Создать и инициализировать сервис. userId — ID игрока из сохранения (тот же, что показан в настройках).
+        /// null — сервис не настроен для этой платформы.
+        /// </summary>
+        public abstract IAnalyticsService Create(string userId);
     }
 }
