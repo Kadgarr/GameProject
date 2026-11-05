@@ -65,9 +65,10 @@ namespace DarknessInside.Editor.Build
             PlayerSettings.WebGL.nameFilesAsHashes = false;
             PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
             PlayerSettings.WebGL.showDiagnostics = false;
-            PlayerSettings.WebGL.template = "APPLICATION:Default";
-            PlayerSettings.defaultWebScreenWidth = 1280;
-            PlayerSettings.defaultWebScreenHeight = 720;
+            // Свой шаблон: холст заполняет окно iframe, размер окна задаётся на странице itch.io (Embed options).
+            PlayerSettings.WebGL.template = "PROJECT:GrayToBright";
+            PlayerSettings.defaultWebScreenWidth = 960;
+            PlayerSettings.defaultWebScreenHeight = 480;
             PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.Medium);
             PlayerSettings.stripEngineCode = true;
         }

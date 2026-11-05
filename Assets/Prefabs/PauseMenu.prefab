@@ -914,6 +914,7 @@ GameObject:
   - component: {fileID: 8914517790145355612}
   - component: {fileID: 8914517790145355613}
   - component: {fileID: 8914517790145355614}
+  - component: {fileID: 8747021802293157309}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1035,3 +1036,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8747021802293157309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914517790145355608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7266cf60222e5684c8279898f6f99006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platforms: 11000000
+  shiftWhenHidden:
+  - {fileID: 8914517789252285387}
+  - {fileID: 8914517789210831878}
+  shift: {x: 0, y: -96}

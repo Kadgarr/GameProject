@@ -1,4 +1,4 @@
-{
+﻿{
   "items": [
     {
       "key": "lang",
@@ -98,7 +98,7 @@
     },
     {
       "key": "hint_lvl_2",
-      "value": "Avoid falling turnes"
+      "value": "Avoid the falling spikes"
     },
     {
       "key": "hint_lvl_3",
@@ -110,7 +110,7 @@
     },
     {
       "key": "hint_lvl_5",
-      "value": "Normal surface and turnes swapped"
+      "value": "Normal ground and spikes have swapped places"
     },
     {
       "key": "hint_lvl_6",
@@ -142,7 +142,7 @@
     },
     {
       "key": "hint_lvl_13",
-      "value": "Titl you phone"
+      "value": "Tilt your phone (on PC: A/D or arrow keys)"
     },
     {
       "key": "hint_lvl_14",

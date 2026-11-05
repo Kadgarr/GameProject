@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Пауза, выход в меню и подсказка на уровне. На паузе экранное управление выключается
 /// через CanvasGroup — без перебора отдельных кнопок.
+/// На компьютере Esc закрывает подсказку, а если её нет — ставит или снимает паузу.
+/// На телефоне клавиатуру не опрашиваем: компонент выключается, кнопки работают как прежде.
 /// </summary>
 public class EscapeMenu : MonoBehaviour
 {
@@ -27,6 +29,30 @@ public class EscapeMenu : MonoBehaviour
         if (clickSound == null)
         {
             clickSound = GetComponentInParent<AudioSource>();
+        }
+
+        // Update нужен только для клавиши Esc; публичные методы работают и у выключенного компонента.
+        enabled = !Application.isMobilePlatform;
+    }
+
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Escape))
+        {
+            return;
+        }
+
+        if (hintCanv != null && hintCanv.activeSelf)
+        {
+            HintExitButton();
+        }
+        else if (GamePause.IsPaused)
+        {
+            Continue();
+        }
+        else
+        {
+            Pause();
         }
     }
 
