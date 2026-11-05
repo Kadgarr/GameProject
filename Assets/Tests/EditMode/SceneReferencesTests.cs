@@ -25,6 +25,14 @@ namespace DarknessInside.Tests
         }
 
         [Test]
+        public void ProjectTimeScale_IsOne()
+        {
+            var timeManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TimeManager.asset")[0]);
+            Assert.That(timeManager.FindProperty("m_TimeScale").floatValue, Is.EqualTo(1f),
+                "Project Settings → Time → Time Scale должен быть 1, иначе игра стартует на паузе.");
+        }
+
+        [Test]
         public void PrivacyPolicyLinks_HaveExternalLinksAsset()
         {
             Scene scene = EditorSceneManager.OpenScene("Assets/Scenes/SceneMenu.unity", OpenSceneMode.Single);

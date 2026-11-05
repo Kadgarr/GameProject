@@ -30,6 +30,10 @@ namespace DarknessInside.Core
         {
             IsPaused = false;
             Changed = null;
+
+            // Игра всегда стартует без паузы, даже если в настройках проекта (Time → Time Scale)
+            // случайно сохранился 0 — иначе анимации меню и физика стоят до первого уровня.
+            Time.timeScale = 1f;
         }
     }
 }
