@@ -183,6 +183,10 @@
     {
       "key": "analytics_off",
       "value": "Статистика: вимк"
+    },
+    {
+      "key": "privacy_policy",
+      "value": "Політика конфіденційності"
     }
   ]
 }

@@ -184,6 +184,10 @@
     {
       "key": "analytics_off",
       "value": "Статистика: выкл"
+    },
+    {
+      "key": "privacy_policy",
+      "value": "Политика конфиденциальности"
     }
   ]
 }
